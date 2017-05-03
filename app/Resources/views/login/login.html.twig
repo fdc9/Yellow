@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}    
+<body class="main">
+
+
+
+<div class="login-screen"></div>
+    <div class="login-center">
+        <div class="container min-height" style="margin-top: 80px;">
+        	<div class="row">
+                <div class="col-xs-4 col-md-offset-0">
+                    <div class="login" id="card">
+                    	<div class="front signin_form">
+                            {% if error %}
+                                <div class="alert alert-danger">
+                                    {{ error.messageKey }}
+                                </div>
+                            {% endif %}
+                        <p>Login Your Account</p>
+                          <form class="login-form" action="{{ path('login') }}" method="post">
+                              <div class="form-group">
+                                  <div class="input-group">
+                                      <input type="text" class="form-control" id="username" name="_username" placeholder="Type your Username">
+                                      <span class="input-group-addon">
+                                          <i class="glyphicon glyphicon-user"></i>
+                                      </span>
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                  <div class="input-group">
+                                      <input type="password" id="password" name="_password" class="form-control" placeholder="Type your pass">
+                                      <span class="input-group-addon">
+                                          <i class="glyphicon glyphicon-lock"></i>
+                                      </span>
+                                  </div>
+                              </div>
+                              <div class="checkbox">
+                              <label><input type="checkbox">Remember me next time.</label>
+                              </div>
+                              
+                              <div class="form-group sign-btn">
+                                  <input type="submit" class="btn" value="Log in">
+                                  <p><a href="#" class="forgot">Can't access your account?</a></p>
+                                  <p><strong>New to TimeInfo?</strong><br><a href="#" id="flip-btn" class="signup signup_link">Sign up for a new account</a></p>
+                              </div>
+                          </form>
+                        </div>
+                        <div class="back signup_form" style="opacity: 0;"> 
+                          <p>Sign Up for Your New Account</p>
+                          <form class="login-form"action="{{ path('security_login') }}" method="post">
+                              <div class="form-group">
+                                  <div class="input-group">
+                                      <input type="text" class="form-control" id ="username" name = "username" placeholder="Username">
+                                      <span class="input-group-addon">
+                                          <i class="glyphicon glyphicon-user"></i>
+                                      </span>
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                <div class="input-group">
+                                  <input type="password" class="form-control" placeholder="Password">
+                                 <span class="input-group-addon">
+                                          <i class="glyphicon glyphicon-lock"></i>
+                                      </span>
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                  <div class="input-group">
+                                      <input type="password" class="form-control" id ="password" name = "password" placeholder="Confirm Password">
+                                      <span class="input-group-addon">
+                                          <i class="glyphicon glyphicon-lock"></i>
+                                      </span>
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                  <div class="input-group">
+                                      <input type="email" class="form-control" id ="email" name = "email" placeholder="Email">
+                                      <span class="input-group-addon">
+                                          <i class="glyphicon glyphicon-envelope"></i>
+                                      </span>
+                                  </div>
+                              </div>
+                              
+                              <div class="form-group sign-btn">
+                                  <input type="submit" class="btn" value="Sign up">
+                                  <br><br>
+                                  <p>You have already Account So <a href="#" id="unflip-btn" class="signup">Log in</a></p>
+                              </div>
+                          </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}

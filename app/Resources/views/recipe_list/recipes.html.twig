@@ -1,0 +1,145 @@
+{% extends 'navbar/user_navbar.html.twig' %}
+
+{% block body %}
+<div id="sidebar" class="col-sm-9">
+
+
+
+    <div id='content' class='row-fluid well'>
+    
+      <div class='span8 main'>
+        <h2>{{ recipe.title }}</h2>
+        <br>
+        <ul class="list-inline list-unstyled">
+        <li><span><img src="{{ asset('eat.png') }}" style="width:20px;height:20px;"></i> {{ recipe.category }} </span></li>
+				<li>|</li>
+				<li><span><i class="glyphicon glyphicon-time"></i> Time: {{ recipe.time }} </span></li>
+				<li>|</li>
+				<span> Difficulty: {{ recipe.difficulty }}</span>
+				<li>|</li>
+				<li><span><i class="glyphicon glyphicon-calendar"></i> Created on: {{ recipe.creationdate }} </span></li>
+				<li>
+				</ul>
+        <p>{{ recipe.description }}<p> 
+
+             		<div class="container">
+				<div class="row" style="margin-top:40px;">
+				<div class="col-md-8">
+				<div class="well well-sm">
+            <div class="text-right">
+                <a class="btn btn-success btn-green" href="#" id="open-review-box">Leave a Review</a>
+            </div>
+        
+            <div class="row" id="post-review-box" style="display:none;">
+                <div class="col-md-12">
+                    <form  action="{{ path('review',{title : recipe.title})}}" method="post">
+                        <input id="ratings-hidden" name="rating" type="hidden"> 
+                        <textarea class="form-control animated" cols="50" id="new-review" name="comment" wrap="hard" placeholder="Enter your review here..." rows="4"></textarea>
+                        <div class="text-right">
+                        <div class="stars starrr" data-rating="0"></div>
+					    <a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="display:none; margin-right: 10px;">
+                        <span class="glyphicon glyphicon-remove"></span>Cancel</a>
+						
+                        <input class="btn btn-success btn-lg" type="submit" value="Save">
+                        </div>
+                    </form>
+                </div>
+            </div>
+				</div> 
+         		</div>
+				</div>
+				</div>
+	
+<div class="container" >
+<h1> Reviews</h1>
+	
+		 {% for ii in array|reverse %}
+		
+<div class="container" >
+<h1> </h1>
+		 
+    <div class="row-fluid"> 
+
+      <div class="col-sm-8">
+	  	
+          <div class="panel panel-default">
+          <div class="panel-heading" >
+            <span itemscope itemtype="http://schema.org/Review">
+	
+            <h3 class="panel-title" itemprop="name">{{ii.recipe}}</h3>
+          </div><!--/panel-heading-->
+          <div class="panel-body" itemprop="reviewBody">
+            <p> {{ii.text}} </p>
+
+            <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+              <small>
+              <span itemprop="name">{{ii.user}}</span>
+           <span style="padding-right:40px;"></span>
+			 </span>
+			    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+
+            <meta itemprop="datePublished" content="">{{ii.creationdate}}
+                       
+              <span class="pull-right">
+              <span class="reviewRating" itemscope itemtype="http://schema.org/Rating">
+              <meta itemprop="worstRating" content="1">
+              <span itemprop="ratingValue">{{ii.Vote}}</span> / 
+              <span itemprop="bestRating"> 5 </span>
+              </span><!--/reviewRating-->
+			
+				  {% for i in range(1, ii.Vote) %}
+				{% if(ii.Vote) %}
+				<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+				{% endif %}
+			{% endfor %}
+			  
+	
+            </small>
+          </div><!--/panel-body-->
+    
+        </div><!--/panel-->
+      </div><!--/col-sm-6-->
+				
+				
+        </div>
+ </div>
+ {% endfor %}
+      </div>
+  
+      </div>
+    </div>
+  </div>
+  
+
+
+<div id="sidebar" class="col-sm-3">
+<head>
+<title>Twitter Bootstrap Tutorial - A responsive layout tutorial</title>
+</head>
+<body>
+
+	
+
+    <div id='content' class='row-fluid well' >
+    
+      <div class='span8 main'>
+      <a href ="#">
+				<img class="media-object" src="https://hips.hearstapps.com/cosmouk.cdnds.net/15/02/640x960/roasted-red-pepper-pasta-vegan-glutenfree-10-ingredients-and-so-creamy-and-delicious.jpg?crop=1xw:0.6666666666666666xh;center,top&resize=200:*">
+			</a>
+        <h2>Ingredients</h2>
+        
+        {% for key, ingr in recipe.ingredients %}
+        
+        <label> - {{ recipe.ingredients[key] }}</label>
+        <label> , {{ recipe.quantity[key]}}</label><br>
+        
+        {% endfor %}
+        
+        </div>
+    </div>
+  </div>
+  
+  
+  
+</body>
+{% endblock %}

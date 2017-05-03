@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+       {% block stylesheets %}
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <link rel="stylesheet" href="{{ asset('css/bootstrap-flatly-3.3.7.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/font-awesome-4.6.3.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/font-lato.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/bootstrap-datetimepicker.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/highlight-solarized-light.css') }}">
+			<link rel="stylesheet" href="{{ asset('css/home.css') }}"></link>
+			<link rel="stylesheet" href="{{ asset('css/registration.css') }}"></link>
+			<link rel="stylesheet" href="{{ asset('css/login.css') }}"></link>
+			<link rel="stylesheet" href="{{ asset('css/navbar.css') }}"></link>
+			<link rel="stylesheet" href="{{ asset('css/review.css') }}"></link>
+			<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" >
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        {% block header %}{% endblock %}
+        {% block body %}{% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset('js/jquery-2.2.4.min.js') }}"></script>
+            <script src="{{ asset('js/moment.min.js') }}"></script>
+            <script src="{{ asset('js/bootstrap-3.3.7.min.js') }}"></script>
+            <script src="{{ asset('js/highlight.pack.js') }}"></script>
+            <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
+			<script src="{{ asset('js/login.js') }}"></script>
+			<script src="{{ asset('js/log.js') }}"></script>
+			<script src="{{ asset('js/new_recipe.js') }}"></script>
+			<script src="{{ asset('js/review.js') }}"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Flip/1.0.18/jquery.flip.js"></script>
+        {% endblock %}
+    </body>
+</html>

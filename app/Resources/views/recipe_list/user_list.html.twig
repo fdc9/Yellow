@@ -1,0 +1,65 @@
+{% extends 'navbar/user_navbar.html.twig' %}
+
+{% block body %}
+
+	<div class="container">
+		<!--<input id="categ" name="categ" value= "">-->
+		
+		<li class="dropdown pull-right btn btn-default">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Order By <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="{{path('recipes', { 'order_by': 'title', 'order_type': 'ASC' })}}"> Title ↑</a></li>
+            <li><a href="{{path('recipes', { 'order_by': 'creationdate', 'order_type': 'ASC' })}}"> Date ↑</a></li>
+			<li><a href="#"> Votes ↑ #dafare#</a></li>
+			<li class="divider"></li>
+			<li><a href="{{path('recipes', { 'order_by': 'title', 'order_type': 'DESC' })}}"> Title ↓</a></li>
+			<li><a href="{{path('recipes', { 'order_by': 'creationdate', 'order_type': 'DESC' })}}"> Date ↓</a></li>
+			<li><a href="#"> Votes ↓ #dafare#</</a></li>
+          </ul>
+        </li>
+	</div>
+	
+	
+	<div class="container" style="margin-top: 20px;">
+	
+    {% for recipe in recipes %}
+	  <div class="well">
+		  <div class="media">
+			<a class="pull-left" href ="#">
+				<img class="media-object" src="https://hips.hearstapps.com/cosmouk.cdnds.net/15/02/640x960/roasted-red-pepper-pasta-vegan-glutenfree-10-ingredients-and-so-creamy-and-delicious.jpg?crop=1xw:0.6666666666666666xh;center,top&resize=200:*">
+			</a>
+			<div class="media-body">
+				<h4  class="media-heading"><a class="link-recipe" href="{{ path('rec',{title : recipe.title})}}">{{ recipe.title }}</a></h4>
+				<p class="text-right">By {{ recipe.user }}</p>
+				<ul class="list-inline list-unstyled">
+				<li><span><img src="{{ asset('eat.png') }}" style="width:20px;height:20px;"></i> {{ recipe.category }} </span></li>
+				<li>|</li>
+				<li><span><i class="glyphicon glyphicon-time"></i> Time: {{ recipe.time }} </span></li>
+				<li>|</li>
+				<span> Difficulty: {{ recipe.difficulty }}</span>
+				<li>
+				</ul>
+			  <p>{{ recipe.descr }}</p>
+			  <ul class="list-inline list-unstyled">
+				<li><span><i class="glyphicon glyphicon-calendar"></i> Created on: {{ recipe.creationdate }} </span></li>
+				<li>|</li>
+				<span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
+				<li>|</li>
+				<li>
+				   <span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star-empty"></span>
+				</li>
+				</ul>
+		   </div>
+		</div>
+	  </div>
+    {% else %}
+        <div class="well"><center>No Recipes Found!!</center></div>
+    {% endfor %}
+	
+	</div>
+
+{% endblock %}

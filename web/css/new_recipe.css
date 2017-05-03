@@ -1,0 +1,124 @@
+.entry:not(:first-of-type)
+{
+    margin-bottom: 10px;
+}
+.glyphicon
+{
+    font-size: 8px;
+}
+.contact-section {
+    /*background-image: url(https://images.pexels.com/photos/48726/pexels-photo-48726.jpeg?w=940&h=650&auto=compress&cs=tinysrgb);*/
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+.section-content{
+  text-align: center; 
+}
+.contact-section .col-md-6{
+  width: 50%;
+}
+
+.form-line{
+  border-right: 1px solid #B29999;
+}
+label{
+  font-size: 1.2em;
+  line-height: 1em;
+  font-weight: normal;
+  color: #FFFFFF;
+}
+textarea.form-control {
+    height: 135px;
+   /* margin-top: px;*/
+}
+
+.submit{
+  font-size: 1.1em;
+  float: right;
+  width: 150px;
+  background-color: transparent;
+  color: #fff;
+
+}
+
+.contact-section .input-gr .form-control {
+    background: rgba(0, 0, 0, 0.5);
+    color: #ddd;
+}
+
+.contact-section .input-gr .input-group-addon {
+    background: none;
+}
+
+.contact-section .input-gr .form-control::-moz-placeholder {
+    color: #fff;
+    opacity: 0.4;
+}
+
+.contact-section .btn-danger {
+	color: red;
+	border-color: red;
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.contact-section .btn-success {
+	color: green;
+	border-color: green;
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.contact-section .btt .btn-default {
+    color: #000;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 15px;
+    margin-right: 10px;
+    text-align: center;
+    padding: 17px 30px;
+    white-space: nowrap;
+    letter-spacing: 1px;
+    border: none;
+    text-transform: uppercase;
+    -webkit-animation-delay: 2s;
+    animation-delay: 2s;
+    -webkit-transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.contact-section .btt .btn-primary {
+	color: #ffffff;
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 15px;
+    margin-left: 10px;
+    text-align: center;
+    padding: 17px 30px;
+    white-space: nowrap;
+    letter-spacing: 1px;
+    background: #00bfff;
+    text-decoration: none;
+    text-transform: uppercase;
+    border: none;
+    -webkit-animation-delay: 2s;
+    animation-delay: 2s;
+    -webkit-transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.btt > a:hover,
+.btt > a:active {
+    color: #ffffff;
+    background: #222222;
+    -webkit-transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+    transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+}
