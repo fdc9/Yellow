@@ -15,11 +15,11 @@ class __TwigTemplate_1abfc59f97e850198b864afbc9c9dd1f470e69bf8500da685a335e7854f
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_07a8aa9779fe879a8c99aa6beb95f7a5db8970ccaa06f768b284b37395a12e1c = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
-        $__internal_07a8aa9779fe879a8c99aa6beb95f7a5db8970ccaa06f768b284b37395a12e1c->enter($__internal_07a8aa9779fe879a8c99aa6beb95f7a5db8970ccaa06f768b284b37395a12e1c_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "WebProfilerBundle:Router:panel.html.twig"));
+        $__internal_f0ac3c16c1aec328f3a60a8f85523434d21772d3e0f8a675134be67df8917924 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
+        $__internal_f0ac3c16c1aec328f3a60a8f85523434d21772d3e0f8a675134be67df8917924->enter($__internal_f0ac3c16c1aec328f3a60a8f85523434d21772d3e0f8a675134be67df8917924_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "WebProfilerBundle:Router:panel.html.twig"));
 
-        $__internal_dcbfe91fe2fa8be8abe9b73dc5bfda67db735b2592343efbc4ba3c6c97d269be = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_dcbfe91fe2fa8be8abe9b73dc5bfda67db735b2592343efbc4ba3c6c97d269be->enter($__internal_dcbfe91fe2fa8be8abe9b73dc5bfda67db735b2592343efbc4ba3c6c97d269be_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "WebProfilerBundle:Router:panel.html.twig"));
+        $__internal_c63e0ddfb0377b3f7fa3ccb5c10067d4039f5c82b4cf67375f6cefffc4710dd1 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_c63e0ddfb0377b3f7fa3ccb5c10067d4039f5c82b4cf67375f6cefffc4710dd1->enter($__internal_c63e0ddfb0377b3f7fa3ccb5c10067d4039f5c82b4cf67375f6cefffc4710dd1_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "WebProfilerBundle:Router:panel.html.twig"));
 
         // line 1
         echo "<h2>Routing</h2>
@@ -200,10 +200,10 @@ $context["trace"], "level", array()) == 2)) {
 </p>
 ";
         
-        $__internal_07a8aa9779fe879a8c99aa6beb95f7a5db8970ccaa06f768b284b37395a12e1c->leave($__internal_07a8aa9779fe879a8c99aa6beb95f7a5db8970ccaa06f768b284b37395a12e1c_prof);
+        $__internal_f0ac3c16c1aec328f3a60a8f85523434d21772d3e0f8a675134be67df8917924->leave($__internal_f0ac3c16c1aec328f3a60a8f85523434d21772d3e0f8a675134be67df8917924_prof);
 
         
-        $__internal_dcbfe91fe2fa8be8abe9b73dc5bfda67db735b2592343efbc4ba3c6c97d269be->leave($__internal_dcbfe91fe2fa8be8abe9b73dc5bfda67db735b2592343efbc4ba3c6c97d269be_prof);
+        $__internal_c63e0ddfb0377b3f7fa3ccb5c10067d4039f5c82b4cf67375f6cefffc4710dd1->leave($__internal_c63e0ddfb0377b3f7fa3ccb5c10067d4039f5c82b4cf67375f6cefffc4710dd1_prof);
 
     }
 
@@ -310,6 +310,6 @@ $context["trace"], "level", array()) == 2)) {
     Note: These matching logs are based on the current router configuration,
     which might differ from the configuration used when profiling this request.
 </p>
-", "WebProfilerBundle:Router:panel.html.twig", "/var/www/html/yellow-saffron3/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/views/Router/panel.html.twig");
+", "WebProfilerBundle:Router:panel.html.twig", "/var/www/html/Yellow/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/views/Router/panel.html.twig");
     }
 }

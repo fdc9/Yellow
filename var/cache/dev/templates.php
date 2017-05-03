@@ -120,6 +120,6 @@
   ':navbar:new_recipe.html.twig' => __DIR__.'/../../../app/Resources/views/navbar/new_recipe.html.twig',
   ':navbar:user_navbar.html.twig' => __DIR__.'/../../../app/Resources/views/navbar/user_navbar.html.twig',
   ':recipe_list:guest_list.html.twig' => __DIR__.'/../../../app/Resources/views/recipe_list/guest_list.html.twig',
-  ':recipe_list:user_babba.html.twig' => __DIR__.'/../../../app/Resources/views/recipe_list/user_babba.html.twig',
+  ':recipe_list:recipes.html.twig' => __DIR__.'/../../../app/Resources/views/recipe_list/recipes.html.twig',
   ':recipe_list:user_list.html.twig' => __DIR__.'/../../../app/Resources/views/recipe_list/user_list.html.twig',
 );
