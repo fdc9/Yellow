@@ -97,6 +97,7 @@ class RegistrationController extends Controller
     public function logoutAction()
     {
         $this->container->get('security.token_storage')->setToken(null);
+        return $this->redirectToRoute('homepage');
     }
     
  
