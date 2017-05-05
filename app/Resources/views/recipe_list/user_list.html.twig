@@ -30,7 +30,7 @@
 			</a>
 			<div class="media-body">
 				<h4  class="media-heading"><a class="link-recipe" href="{{ path('rec',{title : recipe.title})}}">{{ recipe.title }}</a></h4>
-				<p class="text-right">By {{ recipe.user }}</p>
+				<p class="text-right">By {{ recipe.user.username }}</p>
 				<ul class="list-inline list-unstyled">
 				<li><span><img src="{{ asset('eat.png') }}" style="width:20px;height:20px;"></i> {{ recipe.category }} </span></li>
 				<li>|</li>

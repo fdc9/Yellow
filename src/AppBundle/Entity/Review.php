@@ -3,10 +3,11 @@
 namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use AppBundle\Entity\Recipe;
+use AppBundle\Entity\User;
 /**
  * Recipe
-   * @ORM\Entity
+ * @ORM\Entity
  * @ORM\Table(name="Review")
  */
 class Review
@@ -19,31 +20,30 @@ class Review
      */
     private $id;
 
-   /**
+    /**
      *  @ORM\Column(type="string", length=255)
      */
     private $text;
 
-     /**
+    /**
      *  @ORM\Column(type="integer", length=25)
      */
     private $vote;
 
-      /**
-     *  @ORM\Column(type="string", length=25)
+    /**
+     * @ORM\ManyToOne(targetEntity="User")
      */
     private $user;
 
-		 /**
+    /**
      * @ORM\Column(type="string", length=25)
      */
     private $creationdate;
-		
-	
-       /**
-     *  @ORM\Column(type="string", length=25)
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Recipe")
      */
-	  
     private $recipe;
 
 
@@ -70,23 +70,23 @@ class Review
 
         return $this;
     }
-	
-	
-		 /**
+
+
+    /**
      * Set creationdate
      *
      * @param date $creationdate
      *
-      */
+     */
     public function setCreationdate($creationdate)
     {
         $this->creationdate = $creationdate;
 
         return $this;
     }
-	
-	
-		 /**
+
+
+    /**
      * Get creationdate
      *
      * @return date
@@ -133,7 +133,7 @@ class Review
     /**
      * Set user
      *
-     * @param string $idUser
+     * @param User $user
      *
      * @return Review
      */
@@ -147,7 +147,7 @@ class Review
     /**
      * Get user
      *
-     * @return string
+     * @return integer
      */
     public function getUser()
     {
@@ -157,7 +157,7 @@ class Review
     /**
      * Set recipe
      *
-     * @param string $recipe
+     * @param Recipe $recipe
      *
      * @return Review
      */
@@ -171,11 +171,10 @@ class Review
     /**
      * Get recipe
      *
-     * @return string
+     * @return integer
      */
     public function getRecipe()
     {
         return $this->recipe;
     }
 }
-

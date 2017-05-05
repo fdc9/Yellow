@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use AppBundle\Entity\User;
 
 /**
  * User
@@ -25,7 +26,7 @@ class Recipe
     private $title;
 
      /**
-     * @ORM\Column(type="string", length=25)
+      * @ORM\ManyToOne(targetEntity="User")
      */
     private $user;
 	
@@ -106,7 +107,7 @@ class Recipe
     /**
      * Set user
      *
-     * @param string $user
+     * @param User $user
      *
      * @return Recipe
      */
@@ -120,7 +121,7 @@ class Recipe
     /**
      * Get user
      *
-     * @return string
+     * @return integer
      */
     public function getUser()
     {
