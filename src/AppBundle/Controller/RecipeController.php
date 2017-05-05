@@ -16,7 +16,7 @@ use AppBundle\Entity\User;
 class RecipeController extends Controller
 {
 	    /**
-     * @Route("/user/recipe/{title}", name="rec")
+     * @Route("/recipe/{title}", name="rec")
 	 *
      */
     public function rec(Request $request , $title)

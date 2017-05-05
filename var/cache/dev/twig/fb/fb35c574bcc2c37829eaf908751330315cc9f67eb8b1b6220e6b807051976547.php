@@ -21,29 +21,29 @@ class __TwigTemplate_1a2d9854908e7b9acb52756b91ff958d00e31835ea848bad7bc150f28db
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_82562c1bba09702312dff03ebc5ae36b7a01a09924230c2bc01b34a40a512543 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
-        $__internal_82562c1bba09702312dff03ebc5ae36b7a01a09924230c2bc01b34a40a512543->enter($__internal_82562c1bba09702312dff03ebc5ae36b7a01a09924230c2bc01b34a40a512543_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", ":recipe_list:guest_list.html.twig"));
+        $__internal_c741c157235a1d45ab1f0051d4489c88b130a4cfcdf68e74039932ffab70ce1d = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
+        $__internal_c741c157235a1d45ab1f0051d4489c88b130a4cfcdf68e74039932ffab70ce1d->enter($__internal_c741c157235a1d45ab1f0051d4489c88b130a4cfcdf68e74039932ffab70ce1d_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", ":recipe_list:guest_list.html.twig"));
 
-        $__internal_1bd0d00dd4ebb9d4ff58c570f2af4de6a2749bda56a0ef3652685de6ce8c50ed = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_1bd0d00dd4ebb9d4ff58c570f2af4de6a2749bda56a0ef3652685de6ce8c50ed->enter($__internal_1bd0d00dd4ebb9d4ff58c570f2af4de6a2749bda56a0ef3652685de6ce8c50ed_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", ":recipe_list:guest_list.html.twig"));
+        $__internal_aed0f8f7527104a2a733c2c3c234e63cb89914737a61f4c585ec51207d69b9be = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_aed0f8f7527104a2a733c2c3c234e63cb89914737a61f4c585ec51207d69b9be->enter($__internal_aed0f8f7527104a2a733c2c3c234e63cb89914737a61f4c585ec51207d69b9be_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", ":recipe_list:guest_list.html.twig"));
 
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
-        $__internal_82562c1bba09702312dff03ebc5ae36b7a01a09924230c2bc01b34a40a512543->leave($__internal_82562c1bba09702312dff03ebc5ae36b7a01a09924230c2bc01b34a40a512543_prof);
+        $__internal_c741c157235a1d45ab1f0051d4489c88b130a4cfcdf68e74039932ffab70ce1d->leave($__internal_c741c157235a1d45ab1f0051d4489c88b130a4cfcdf68e74039932ffab70ce1d_prof);
 
         
-        $__internal_1bd0d00dd4ebb9d4ff58c570f2af4de6a2749bda56a0ef3652685de6ce8c50ed->leave($__internal_1bd0d00dd4ebb9d4ff58c570f2af4de6a2749bda56a0ef3652685de6ce8c50ed_prof);
+        $__internal_aed0f8f7527104a2a733c2c3c234e63cb89914737a61f4c585ec51207d69b9be->leave($__internal_aed0f8f7527104a2a733c2c3c234e63cb89914737a61f4c585ec51207d69b9be_prof);
 
     }
 
     // line 3
     public function block_body($context, array $blocks = array())
     {
-        $__internal_0d9a9d916eca7d12d157fd169f6b6d4c7c443e4d3820e0ff85765f31516fc627 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
-        $__internal_0d9a9d916eca7d12d157fd169f6b6d4c7c443e4d3820e0ff85765f31516fc627->enter($__internal_0d9a9d916eca7d12d157fd169f6b6d4c7c443e4d3820e0ff85765f31516fc627_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+        $__internal_ec2db5500ee3d7e4b79c836336b0952132ee1f38a3bda4818fe1ed8ede006b59 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
+        $__internal_ec2db5500ee3d7e4b79c836336b0952132ee1f38a3bda4818fe1ed8ede006b59->enter($__internal_ec2db5500ee3d7e4b79c836336b0952132ee1f38a3bda4818fe1ed8ede006b59_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
-        $__internal_2b0515b933a7284936a651760cf8e95228fb6c22f816449c214b9caa0aa3162d = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_2b0515b933a7284936a651760cf8e95228fb6c22f816449c214b9caa0aa3162d->enter($__internal_2b0515b933a7284936a651760cf8e95228fb6c22f816449c214b9caa0aa3162d_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+        $__internal_4ca1de9765834e20194c6b1b9b4d6ca7abe0b820335206dbf844585906d65117 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_4ca1de9765834e20194c6b1b9b4d6ca7abe0b820335206dbf844585906d65117->enter($__internal_4ca1de9765834e20194c6b1b9b4d6ca7abe0b820335206dbf844585906d65117_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
         // line 4
         echo "
@@ -100,7 +100,7 @@ class __TwigTemplate_1a2d9854908e7b9acb52756b91ff958d00e31835ea848bad7bc150f28db
             echo "</a></h4>
 \t\t\t\t<p class=\"text-right\">By ";
             // line 33
-            echo twig_escape_filter($this->env, $this->getAttribute($context["recipe"], "user", array()), "html", null, true);
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["recipe"], "user", array()), "username", array()), "html", null, true);
             echo "</p>
 \t\t\t\t<ul class=\"list-inline list-unstyled\">
 \t\t\t\t<li><span><img src=\"";
@@ -161,10 +161,10 @@ class __TwigTemplate_1a2d9854908e7b9acb52756b91ff958d00e31835ea848bad7bc150f28db
 
 ";
         
-        $__internal_2b0515b933a7284936a651760cf8e95228fb6c22f816449c214b9caa0aa3162d->leave($__internal_2b0515b933a7284936a651760cf8e95228fb6c22f816449c214b9caa0aa3162d_prof);
+        $__internal_4ca1de9765834e20194c6b1b9b4d6ca7abe0b820335206dbf844585906d65117->leave($__internal_4ca1de9765834e20194c6b1b9b4d6ca7abe0b820335206dbf844585906d65117_prof);
 
         
-        $__internal_0d9a9d916eca7d12d157fd169f6b6d4c7c443e4d3820e0ff85765f31516fc627->leave($__internal_0d9a9d916eca7d12d157fd169f6b6d4c7c443e4d3820e0ff85765f31516fc627_prof);
+        $__internal_ec2db5500ee3d7e4b79c836336b0952132ee1f38a3bda4818fe1ed8ede006b59->leave($__internal_ec2db5500ee3d7e4b79c836336b0952132ee1f38a3bda4818fe1ed8ede006b59_prof);
 
     }
 
@@ -225,7 +225,7 @@ class __TwigTemplate_1a2d9854908e7b9acb52756b91ff958d00e31835ea848bad7bc150f28db
 \t\t\t</a>
 \t\t\t<div class=\"media-body\">
 \t\t\t\t<h4  class=\"media-heading\"><a class=\"link-recipe\" href=\"{{ path('rec',{title : recipe.title})}}\">{{ recipe.title }}</a></h4>
-\t\t\t\t<p class=\"text-right\">By {{ recipe.user }}</p>
+\t\t\t\t<p class=\"text-right\">By {{ recipe.user.username }}</p>
 \t\t\t\t<ul class=\"list-inline list-unstyled\">
 \t\t\t\t<li><span><img src=\"{{ asset('eat.png') }}\" style=\"width:20px;height:20px;\"></i> {{ recipe.category }} </span></li>
 \t\t\t\t<li>|</li>

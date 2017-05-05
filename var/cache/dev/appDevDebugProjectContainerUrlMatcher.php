@@ -142,24 +142,24 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             }
             not_find:
 
-            if (0 === strpos($pathinfo, '/user/recipe')) {
-                // rec
-                if (preg_match('#^/user/recipe/(?P<title>[^/]++)$#s', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'rec')), array (  '_controller' => 'AppBundle\\Controller\\RecipeController::rec',));
+        }
+
+        // rec
+        if (0 === strpos($pathinfo, '/recipe') && preg_match('#^/recipe/(?P<title>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'rec')), array (  '_controller' => 'AppBundle\\Controller\\RecipeController::rec',));
+        }
+
+        if (0 === strpos($pathinfo, '/user')) {
+            // review
+            if (0 === strpos($pathinfo, '/user/recipe') && preg_match('#^/user/recipe/(?P<title>[^/]++)/review$#s', $pathinfo, $matches)) {
+                if ($this->context->getMethod() != 'POST') {
+                    $allow[] = 'POST';
+                    goto not_review;
                 }
 
-                // review
-                if (preg_match('#^/user/recipe/(?P<title>[^/]++)/review$#s', $pathinfo, $matches)) {
-                    if ($this->context->getMethod() != 'POST') {
-                        $allow[] = 'POST';
-                        goto not_review;
-                    }
-
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'review')), array (  '_controller' => 'AppBundle\\Controller\\RecipeController::review',));
-                }
-                not_review:
-
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'review')), array (  '_controller' => 'AppBundle\\Controller\\RecipeController::review',));
             }
+            not_review:
 
             // save_recipe
             if ($pathinfo === '/user/new_recipe/saved') {
