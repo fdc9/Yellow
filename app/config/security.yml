@@ -26,6 +26,8 @@ security:
                login_path: login
                check_path: login
 
+
+
         main:
             anonymous: ~
             # activate different ways to authenticate
