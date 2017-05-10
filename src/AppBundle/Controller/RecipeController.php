@@ -21,16 +21,24 @@ class RecipeController extends Controller
      */
     public function rec(Request $request , $title)
     {
+
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $recipe = $this->getDoctrine()->getRepository(Recipe::class)->findOneByTitle($title);
         $repository = $this->getDoctrine()->getRepository('AppBundle:Review');
 
         $arrayReview = $repository->findByRecipe($recipe);
 
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            $username = 'guest';
+        }
+        else
+         $username = $user->getUsername();
+
+
         return $this->render('recipe_list/recipes.html.twig', [
             'array'=>$arrayReview,
             'recipe' => $recipe,
-            'username' => $user->getUsername(),
+            'username' => $username,
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
         ]);
     }
