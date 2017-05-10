@@ -22,11 +22,21 @@ class RecipeController extends Controller
     public function rec(Request $request , $title)
     {
 
+        $flag=TRUE;
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $recipe = $this->getDoctrine()->getRepository(Recipe::class)->findOneByTitle($title);
         $repository = $this->getDoctrine()->getRepository('AppBundle:Review');
-
         $arrayReview = $repository->findByRecipe($recipe);
+        $idUser = $user->getId();
+        $userRecipe = $recipe->getUser();
+        $idUserRecipe = $userRecipe->getId();
+        if($idUser == $idUserRecipe )
+            $flag=FALSE;
+
+       foreach($arrayReview as $ar){
+            if($ar->getUser()->getId() == $idUser)
+              $flag=FALSE;
+        }
 
         if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             $username = 'guest';
@@ -35,7 +45,9 @@ class RecipeController extends Controller
          $username = $user->getUsername();
 
 
+
         return $this->render('recipe_list/recipes.html.twig', [
+            'flag' => $flag,
             'array'=>$arrayReview,
             'recipe' => $recipe,
             'username' => $username,

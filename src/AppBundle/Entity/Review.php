@@ -147,7 +147,7 @@ class Review
     /**
      * Get user
      *
-     * @return integer
+     * @return User
      */
     public function getUser()
     {
