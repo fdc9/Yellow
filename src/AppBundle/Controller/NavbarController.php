@@ -46,9 +46,9 @@ class NavbarController extends Controller
 			$recipes = $this->getDoctrine()->getRepository(Recipe::class)->findBy(array(), array($order_by => $order_type));
 		else
 			$recipes = $this->getDoctrine()->getRepository(Recipe::class)->findBy(array('category' => $category), array($order_by => $order_type));
-			
-			if($user =='anon.')
-		 return $this->redirectToRoute('guest', array('recipes' => $recipes));
+
+		if($user =='anon.')
+		    return $this->redirectToRoute('guest', array('recipes' => $recipes));
 		
 		return $this->render('recipe_list/user_list.html.twig', [
 			'username' => $user->getUsername(),

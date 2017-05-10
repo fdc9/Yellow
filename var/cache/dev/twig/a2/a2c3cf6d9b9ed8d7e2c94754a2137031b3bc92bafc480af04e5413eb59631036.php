@@ -1,6 +1,6 @@
 <?php
 
-/* recipe_list/user_list.html.twig */
+/* :recipe_list:user_list.html.twig */
 class __TwigTemplate_8387e8a20588c0b32cfd77c15499ac2d9f0d81db87d617fdccd54716407e6bdd extends Twig_Template
 {
     public function __construct(Twig_Environment $env)
@@ -8,7 +8,7 @@ class __TwigTemplate_8387e8a20588c0b32cfd77c15499ac2d9f0d81db87d617fdccd54716407
         parent::__construct($env);
 
         // line 1
-        $this->parent = $this->loadTemplate("navbar/user_navbar.html.twig", "recipe_list/user_list.html.twig", 1);
+        $this->parent = $this->loadTemplate("navbar/user_navbar.html.twig", ":recipe_list:user_list.html.twig", 1);
         $this->blocks = array(
             'body' => array($this, 'block_body'),
         );
@@ -21,29 +21,29 @@ class __TwigTemplate_8387e8a20588c0b32cfd77c15499ac2d9f0d81db87d617fdccd54716407
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_ed23a414afe4c219fe252eebbc029dbee4bd0fb429592c6672fe083ba42fddd4 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
-        $__internal_ed23a414afe4c219fe252eebbc029dbee4bd0fb429592c6672fe083ba42fddd4->enter($__internal_ed23a414afe4c219fe252eebbc029dbee4bd0fb429592c6672fe083ba42fddd4_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "recipe_list/user_list.html.twig"));
+        $__internal_9beb9d70b495134edb840258b21beff46552f9249495d248a54992a6d9fbe88d = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
+        $__internal_9beb9d70b495134edb840258b21beff46552f9249495d248a54992a6d9fbe88d->enter($__internal_9beb9d70b495134edb840258b21beff46552f9249495d248a54992a6d9fbe88d_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", ":recipe_list:user_list.html.twig"));
 
-        $__internal_57f1eac3ac8303637492ee02ca422f239da295823564cdf3b96eb8af3c2c5521 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_57f1eac3ac8303637492ee02ca422f239da295823564cdf3b96eb8af3c2c5521->enter($__internal_57f1eac3ac8303637492ee02ca422f239da295823564cdf3b96eb8af3c2c5521_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "recipe_list/user_list.html.twig"));
+        $__internal_e23580dc8e164f182185470be958c9f158d105516e04819138bdb5f54ae84ece = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_e23580dc8e164f182185470be958c9f158d105516e04819138bdb5f54ae84ece->enter($__internal_e23580dc8e164f182185470be958c9f158d105516e04819138bdb5f54ae84ece_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", ":recipe_list:user_list.html.twig"));
 
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
-        $__internal_ed23a414afe4c219fe252eebbc029dbee4bd0fb429592c6672fe083ba42fddd4->leave($__internal_ed23a414afe4c219fe252eebbc029dbee4bd0fb429592c6672fe083ba42fddd4_prof);
+        $__internal_9beb9d70b495134edb840258b21beff46552f9249495d248a54992a6d9fbe88d->leave($__internal_9beb9d70b495134edb840258b21beff46552f9249495d248a54992a6d9fbe88d_prof);
 
         
-        $__internal_57f1eac3ac8303637492ee02ca422f239da295823564cdf3b96eb8af3c2c5521->leave($__internal_57f1eac3ac8303637492ee02ca422f239da295823564cdf3b96eb8af3c2c5521_prof);
+        $__internal_e23580dc8e164f182185470be958c9f158d105516e04819138bdb5f54ae84ece->leave($__internal_e23580dc8e164f182185470be958c9f158d105516e04819138bdb5f54ae84ece_prof);
 
     }
 
     // line 3
     public function block_body($context, array $blocks = array())
     {
-        $__internal_e9ba35f265e6e61e609ce45ea5b9d5de6be34736248cf6e7335079bb5d460635 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
-        $__internal_e9ba35f265e6e61e609ce45ea5b9d5de6be34736248cf6e7335079bb5d460635->enter($__internal_e9ba35f265e6e61e609ce45ea5b9d5de6be34736248cf6e7335079bb5d460635_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+        $__internal_570bc0138ae71d4c65d48c58af57f55a6767e4731991f697175615a5d06ab05c = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
+        $__internal_570bc0138ae71d4c65d48c58af57f55a6767e4731991f697175615a5d06ab05c->enter($__internal_570bc0138ae71d4c65d48c58af57f55a6767e4731991f697175615a5d06ab05c_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
-        $__internal_9619370180e7e78b1c6afe4183c0ce7af54501c36c98a8315b687d0142aef305 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_9619370180e7e78b1c6afe4183c0ce7af54501c36c98a8315b687d0142aef305->enter($__internal_9619370180e7e78b1c6afe4183c0ce7af54501c36c98a8315b687d0142aef305_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+        $__internal_5f31ebb89aa48863370b29589d2c8176a28c7ef287f8524a1b79ecea77baff2a = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_5f31ebb89aa48863370b29589d2c8176a28c7ef287f8524a1b79ecea77baff2a->enter($__internal_5f31ebb89aa48863370b29589d2c8176a28c7ef287f8524a1b79ecea77baff2a_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
         // line 4
         echo "
@@ -131,15 +131,68 @@ class __TwigTemplate_8387e8a20588c0b32cfd77c15499ac2d9f0d81db87d617fdccd54716407
             echo twig_escape_filter($this->env, $this->getAttribute($context["recipe"], "creationdate", array()), "html", null, true);
             echo " </span></li>
 \t\t\t\t<li>|</li>
-\t\t\t\t<span><i class=\"glyphicon glyphicon-comment\"></i> 2 comments</span>
-\t\t\t\t<li>|</li>
-\t\t\t\t<li>
-\t\t\t\t   <span class=\"glyphicon glyphicon-star\"></span>
-\t\t\t\t\t\t\t<span class=\"glyphicon glyphicon-star\"></span>
-\t\t\t\t\t\t\t<span class=\"glyphicon glyphicon-star\"></span>
-\t\t\t\t\t\t\t<span class=\"glyphicon glyphicon-star\"></span>
-\t\t\t\t\t\t\t<span class=\"glyphicon glyphicon-star-empty\"></span>
-\t\t\t\t</li>
+\t\t\t\t<span><i class=\"glyphicon glyphicon-comment\"></i> ";
+            // line 46
+            echo twig_escape_filter($this->env, $this->getAttribute($context["recipe"], "count", array()), "html", null, true);
+            echo " review </span>
+\t\t\t\t<li>|
+                    ";
+            // line 48
+            if (($this->getAttribute($context["recipe"], "average", array()) > 0.5)) {
+                // line 49
+                echo "\t\t\t\t   \t\t<span class=\"glyphicon glyphicon-star\"></span>
+\t\t\t\t\t";
+            } else {
+                // line 51
+                echo "\t\t\t\t\t\t<span class=\"glyphicon glyphicon-star-empty\"></span>
+\t\t\t\t\t";
+            }
+            // line 53
+            echo "                    ";
+            if (($this->getAttribute($context["recipe"], "average", array()) > 1.5)) {
+                // line 54
+                echo "\t\t\t\t\t\t<span class=\"glyphicon glyphicon-star\"></span>
+                    ";
+            } else {
+                // line 56
+                echo "\t\t\t\t\t\t<span class=\"glyphicon glyphicon-star-empty\"></span>
+                    ";
+            }
+            // line 58
+            echo "                    ";
+            if (($this->getAttribute($context["recipe"], "average", array()) > 2.5)) {
+                // line 59
+                echo "\t\t\t\t\t\t<span class=\"glyphicon glyphicon-star\"></span>
+                    ";
+            } else {
+                // line 61
+                echo "\t\t\t\t\t\t<span class=\"glyphicon glyphicon-star-empty\"></span>
+                    ";
+            }
+            // line 63
+            echo "                    ";
+            if (($this->getAttribute($context["recipe"], "average", array()) > 3.5)) {
+                // line 64
+                echo "\t\t\t\t\t\t<span class=\"glyphicon glyphicon-star\"></span>
+                    ";
+            } else {
+                // line 66
+                echo "\t\t\t\t\t\t<span class=\"glyphicon glyphicon-star-empty\"></span>
+                    ";
+            }
+            // line 68
+            echo "                    ";
+            if (($this->getAttribute($context["recipe"], "average", array()) > 4.5)) {
+                // line 69
+                echo "\t\t\t\t\t\t<span class=\"glyphicon glyphicon-star\"></span>
+                    ";
+            } else {
+                // line 71
+                echo "\t\t\t\t\t\t<span class=\"glyphicon glyphicon-star-empty\"></span>
+                    ";
+            }
+            // line 73
+            echo "\t\t\t\t</li>
 \t\t\t\t</ul>
 \t\t   </div>
 \t\t</div>
@@ -148,29 +201,29 @@ class __TwigTemplate_8387e8a20588c0b32cfd77c15499ac2d9f0d81db87d617fdccd54716407
             $context['_iterated'] = true;
         }
         if (!$context['_iterated']) {
-            // line 60
+            // line 79
             echo "        <div class=\"well\"><center>No Recipes Found!!</center></div>
     ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['recipe'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 62
+        // line 81
         echo "\t
 \t</div>
 
 ";
         
-        $__internal_9619370180e7e78b1c6afe4183c0ce7af54501c36c98a8315b687d0142aef305->leave($__internal_9619370180e7e78b1c6afe4183c0ce7af54501c36c98a8315b687d0142aef305_prof);
+        $__internal_5f31ebb89aa48863370b29589d2c8176a28c7ef287f8524a1b79ecea77baff2a->leave($__internal_5f31ebb89aa48863370b29589d2c8176a28c7ef287f8524a1b79ecea77baff2a_prof);
 
         
-        $__internal_e9ba35f265e6e61e609ce45ea5b9d5de6be34736248cf6e7335079bb5d460635->leave($__internal_e9ba35f265e6e61e609ce45ea5b9d5de6be34736248cf6e7335079bb5d460635_prof);
+        $__internal_570bc0138ae71d4c65d48c58af57f55a6767e4731991f697175615a5d06ab05c->leave($__internal_570bc0138ae71d4c65d48c58af57f55a6767e4731991f697175615a5d06ab05c_prof);
 
     }
 
     public function getTemplateName()
     {
-        return "recipe_list/user_list.html.twig";
+        return ":recipe_list:user_list.html.twig";
     }
 
     public function isTraitable()
@@ -180,7 +233,7 @@ class __TwigTemplate_8387e8a20588c0b32cfd77c15499ac2d9f0d81db87d617fdccd54716407
 
     public function getDebugInfo()
     {
-        return array (  159 => 62,  152 => 60,  131 => 44,  126 => 42,  120 => 39,  115 => 37,  108 => 35,  103 => 33,  97 => 32,  89 => 26,  84 => 25,  72 => 16,  68 => 15,  62 => 12,  58 => 11,  49 => 4,  40 => 3,  11 => 1,);
+        return array (  212 => 81,  205 => 79,  195 => 73,  191 => 71,  187 => 69,  184 => 68,  180 => 66,  176 => 64,  173 => 63,  169 => 61,  165 => 59,  162 => 58,  158 => 56,  154 => 54,  151 => 53,  147 => 51,  143 => 49,  141 => 48,  136 => 46,  131 => 44,  126 => 42,  120 => 39,  115 => 37,  108 => 35,  103 => 33,  97 => 32,  89 => 26,  84 => 25,  72 => 16,  68 => 15,  62 => 12,  58 => 11,  49 => 4,  40 => 3,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -238,14 +291,33 @@ class __TwigTemplate_8387e8a20588c0b32cfd77c15499ac2d9f0d81db87d617fdccd54716407
 \t\t\t  <ul class=\"list-inline list-unstyled\">
 \t\t\t\t<li><span><i class=\"glyphicon glyphicon-calendar\"></i> Created on: {{ recipe.creationdate }} </span></li>
 \t\t\t\t<li>|</li>
-\t\t\t\t<span><i class=\"glyphicon glyphicon-comment\"></i> 2 comments</span>
-\t\t\t\t<li>|</li>
-\t\t\t\t<li>
-\t\t\t\t   <span class=\"glyphicon glyphicon-star\"></span>
-\t\t\t\t\t\t\t<span class=\"glyphicon glyphicon-star\"></span>
-\t\t\t\t\t\t\t<span class=\"glyphicon glyphicon-star\"></span>
-\t\t\t\t\t\t\t<span class=\"glyphicon glyphicon-star\"></span>
-\t\t\t\t\t\t\t<span class=\"glyphicon glyphicon-star-empty\"></span>
+\t\t\t\t<span><i class=\"glyphicon glyphicon-comment\"></i> {{ recipe.count }} review </span>
+\t\t\t\t<li>|
+                    {% if(recipe.average>0.5) %}
+\t\t\t\t   \t\t<span class=\"glyphicon glyphicon-star\"></span>
+\t\t\t\t\t{% else %}
+\t\t\t\t\t\t<span class=\"glyphicon glyphicon-star-empty\"></span>
+\t\t\t\t\t{% endif %}
+                    {% if(recipe.average>1.5) %}
+\t\t\t\t\t\t<span class=\"glyphicon glyphicon-star\"></span>
+                    {% else %}
+\t\t\t\t\t\t<span class=\"glyphicon glyphicon-star-empty\"></span>
+                    {% endif %}
+                    {% if(recipe.average>2.5) %}
+\t\t\t\t\t\t<span class=\"glyphicon glyphicon-star\"></span>
+                    {% else %}
+\t\t\t\t\t\t<span class=\"glyphicon glyphicon-star-empty\"></span>
+                    {% endif %}
+                    {% if(recipe.average>3.5) %}
+\t\t\t\t\t\t<span class=\"glyphicon glyphicon-star\"></span>
+                    {% else %}
+\t\t\t\t\t\t<span class=\"glyphicon glyphicon-star-empty\"></span>
+                    {% endif %}
+                    {% if(recipe.average>4.5) %}
+\t\t\t\t\t\t<span class=\"glyphicon glyphicon-star\"></span>
+                    {% else %}
+\t\t\t\t\t\t<span class=\"glyphicon glyphicon-star-empty\"></span>
+                    {% endif %}
 \t\t\t\t</li>
 \t\t\t\t</ul>
 \t\t   </div>
@@ -258,6 +330,6 @@ class __TwigTemplate_8387e8a20588c0b32cfd77c15499ac2d9f0d81db87d617fdccd54716407
 \t</div>
 
 {% endblock %}
-", "recipe_list/user_list.html.twig", "/var/www/html/Yellow/app/Resources/views/recipe_list/user_list.html.twig");
+", ":recipe_list:user_list.html.twig", "/home/vagrant/Yellow/app/Resources/views/recipe_list/user_list.html.twig");
     }
 }

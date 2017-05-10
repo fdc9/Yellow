@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Entity\User;
+use AppBundle\Entity\Review;
 
 /**
  * User
@@ -59,15 +60,34 @@ class Recipe
      * @ORM\Column(type="string", length=25)
      */
     private $category;
+
      /**
-     * @ORM\Column(type="array")
-     */
+      * @ORM\ManyToMany(targetEntity="Ingredient")
+      * @ORM\JoinTable(name="recipe_ingredient",
+      *      joinColumns={@ORM\JoinColumn(name="recipe_id", referencedColumnName="id")},
+      *      inverseJoinColumns={@ORM\JoinColumn(name="ingredient_id", referencedColumnName="id")}
+      *      )
+      */
     private $ingredients;
+
+    public function __construct() {
+        $this->ingredients = array();
+    }
 
      /**
      * @ORM\Column(type="array")
      */
     private $quantity;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $average = -1;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $count = 0;
 
 
     /**
@@ -102,6 +122,36 @@ class Recipe
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * Get count
+     *
+     * @return integer
+     */
+    public function getCount()
+    {
+        /*$em = $this->getDoctrine()->getManager();
+        /*$query = $em->createQuery("
+		SELECT COUNT(*)
+		FROM AppBundle:Review rev
+		WHERE rev.recipe = :index"
+        )->setParameter('index', $this->id);
+        $c = $query->getResult();*/
+
+        $this->count = 2;
+        return $this->count;
+    }
+
+    /**
+     * Get average
+     *
+     * @return float
+     */
+    public function getAverage()
+    {
+        $this->average = 3.5;
+        return $this->average;
     }
 
     /**

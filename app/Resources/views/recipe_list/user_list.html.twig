@@ -43,14 +43,33 @@
 			  <ul class="list-inline list-unstyled">
 				<li><span><i class="glyphicon glyphicon-calendar"></i> Created on: {{ recipe.creationdate }} </span></li>
 				<li>|</li>
-				<span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
-				<li>|</li>
-				<li>
-				   <span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star-empty"></span>
+				<span><i class="glyphicon glyphicon-comment"></i> {{ recipe.count }} review </span>
+				<li>|
+                    {% if(recipe.average>0.5) %}
+				   		<span class="glyphicon glyphicon-star"></span>
+					{% else %}
+						<span class="glyphicon glyphicon-star-empty"></span>
+					{% endif %}
+                    {% if(recipe.average>1.5) %}
+						<span class="glyphicon glyphicon-star"></span>
+                    {% else %}
+						<span class="glyphicon glyphicon-star-empty"></span>
+                    {% endif %}
+                    {% if(recipe.average>2.5) %}
+						<span class="glyphicon glyphicon-star"></span>
+                    {% else %}
+						<span class="glyphicon glyphicon-star-empty"></span>
+                    {% endif %}
+                    {% if(recipe.average>3.5) %}
+						<span class="glyphicon glyphicon-star"></span>
+                    {% else %}
+						<span class="glyphicon glyphicon-star-empty"></span>
+                    {% endif %}
+                    {% if(recipe.average>4.5) %}
+						<span class="glyphicon glyphicon-star"></span>
+                    {% else %}
+						<span class="glyphicon glyphicon-star-empty"></span>
+                    {% endif %}
 				</li>
 				</ul>
 		   </div>
