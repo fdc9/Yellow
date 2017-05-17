@@ -134,7 +134,7 @@
 
                 {% for key, ingr in recipe.ingredients %}
 
-                    <label> - {{ recipe.ingredients[key] }}</label>
+                    <label> - {{ recipe.ingredients[key].getName() }}</label>
                     <label> , {{ recipe.quantity[key]}}</label><br>
 
                 {% endfor %}

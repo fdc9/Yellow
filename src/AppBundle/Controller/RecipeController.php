@@ -13,6 +13,8 @@ use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Recipe;
 use AppBundle\Entity\Review;
 use AppBundle\Entity\User;
+use AppBundle\Entity\Ingredient;
+
 class RecipeController extends Controller
 {
 	    /**
@@ -102,6 +104,8 @@ class RecipeController extends Controller
 		$qt = array();
 		$size = $request->get('count-hidden');
 
+
+
   		for($i = 0; $i < $size; $i++){
 
             $ing = $em->getRepository('AppBundle:Ingredient')->find($request->get('ingredient'.$i));
@@ -113,14 +117,16 @@ class RecipeController extends Controller
                 $em->flush();
             }
 
-			array_push($ingredient_array, $request->get('ingredient'.$i));
+
+			array_push($ingredient_array, $ingredient);
 			array_push($qt, $request->get('quantity'.$i));
 		}
-		$recipe->setIngredients($ingredient_array);
+        $recipe->setIngredients($ingredient_array);
 		$recipe->setQuantity($qt);
         $em->persist($recipe);
         $em->flush();
 		
 		 return $this->redirectToRoute('rec', array('title' => $request->get('title')));
+        
     }
 }
