@@ -149,6 +149,17 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'rec')), array (  '_controller' => 'AppBundle\\Controller\\RecipeController::rec',));
         }
 
+        // delete_recipe
+        if (0 === strpos($pathinfo, '/delete') && preg_match('#^/delete/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            if ($this->context->getMethod() != 'POST') {
+                $allow[] = 'POST';
+                goto not_delete_recipe;
+            }
+
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'delete_recipe')), array (  '_controller' => 'AppBundle\\Controller\\RecipeController::recipe',));
+        }
+        not_delete_recipe:
+
         if (0 === strpos($pathinfo, '/user')) {
             // review
             if (0 === strpos($pathinfo, '/user/recipe') && preg_match('#^/user/recipe/(?P<title>[^/]++)/review$#s', $pathinfo, $matches)) {

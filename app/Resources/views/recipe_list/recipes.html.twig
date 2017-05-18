@@ -141,7 +141,13 @@
 
             </div>
         </div>
+        {% if( recipe.user.username == app.user.username ) %}
+        <form action="{{ path('delete_recipe',{id : recipe.id})}}" method="post">
+            <input class="btn btn-success" type="submit" name="recipeId" id="recipeId" value = "Delete Recipe"></input>
+        </form>
+        {% endif %}
     </div>
+
 
 
 

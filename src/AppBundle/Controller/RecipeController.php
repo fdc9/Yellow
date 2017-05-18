@@ -58,6 +58,23 @@ class RecipeController extends Controller
     }
 
     /**
+     * @Route("/delete/{id}", name="delete_recipe")
+     * @Method("POST")
+     */
+    public function recipe(Request $request, $id)
+    {
+        $recipe = $this->getDoctrine()->getRepository(Recipe::class)->findOneById($id);
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($recipe);
+        $em->flush();
+
+        $recipes = $this->getDoctrine()->getRepository(Recipe::class)->findBy(array(), array('title' => 'ASC'));
+        return $this->redirectToRoute('recipes');
+
+
+    }
+
+    /**
      *@Route("/user/recipe/{title}/review" , name="review")
      *@Method("POST")
      */
@@ -108,13 +125,17 @@ class RecipeController extends Controller
 
   		for($i = 0; $i < $size; $i++){
 
-            $ing = $em->getRepository('AppBundle:Ingredient')->find($request->get('ingredient'.$i));
+            $ing = $em->getRepository('AppBundle:Ingredient')->findOneByName($request->get('ingredient'.$i));
 
+            $ingredient = new Ingredient();
   		    if(!$ing){
-                $ingredient = new Ingredient();
+
                 $ingredient->setName($request->get('ingredient'.$i));
                 $em->persist($ingredient);
                 $em->flush();
+            }
+            else{
+  		        $ingredient = $ing;
             }
 
 
@@ -127,6 +148,6 @@ class RecipeController extends Controller
         $em->flush();
 		
 		 return $this->redirectToRoute('rec', array('title' => $request->get('title')));
-        
+
     }
 }

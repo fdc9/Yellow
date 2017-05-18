@@ -49,17 +49,40 @@ class NavbarController extends Controller
 
 		if($user =='anon.')
 		    return $this->redirectToRoute('guest', array('recipes' => $recipes));
-		
-		return $this->render('recipe_list/user_list.html.twig', [
-			'username' => $user->getUsername(),
-			'recipes' => $recipes,
-			'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
-		]);
+
+		foreach ($recipes as $recp){
+            $em = $this->getDoctrine()->getManager();
+            $query = $em->createQuery("
+              SELECT '*'
+              FROM AppBundle:Review rev
+              WHERE rev.recipe = :index"
+            )->setParameter('index', $recp->getId());
+            $c = $query->getResult();
+            $recp->setCount(count($c));
+
+            if(count($c)>0) {
+
+                $query = $em->createQuery("
+              SELECT SUM(rev.vote)
+              FROM AppBundle:Review rev
+              WHERE rev.recipe = :index"
+                )->setParameter('index', $recp->getId())->getSingleScalarResult();
+                
+                $recp->setAverage($query/count($c));
+            }
+
+        }
+
+        return $this->render('recipe_list/user_list.html.twig', [
+            'username' => $user->getUsername(),
+            'recipes' => $recipes,
+            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
+        ]);
     }
-	
-	 /**
+
+     /**
      * @Route("/user/findrecipes", name="find")
-	 * @Method("POST")
+     * @Method("POST")
      */
      public function findRecipes(Request $request)
     {

@@ -139,8 +139,12 @@ class Recipe
         )->setParameter('index', $this->id);
         $c = $query->getResult();*/
 
-        $this->count = 2;
+        //$this->count = 2;
         return $this->count;
+    }
+
+    public function setCount($count){
+        $this->count = $count;
     }
 
     /**
@@ -150,8 +154,12 @@ class Recipe
      */
     public function getAverage()
     {
-        $this->average = 3.5;
+       // $this->average = 3.5;
         return $this->average;
+    }
+
+    public function setAverage($avg){
+        $this->average = $avg;
     }
 
     /**
