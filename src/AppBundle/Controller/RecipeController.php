@@ -74,6 +74,28 @@ class RecipeController extends Controller
 
     }
 
+
+    /**
+     * @Route("/delete/review/{id}", name="delete_review")
+     * @Method("POST")
+     */
+    public function deleteReview(Request $request, $id)
+    {
+        $review = $this->getDoctrine()->getRepository(Review::class)->findOneById($id);
+        $title = $review->getRecipe()->getTitle();
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($review);
+        $em->flush();
+
+        return $this->redirectToRoute('rec', array('title' => $title));
+
+
+    }
+
+
+
+
+
     /**
      *@Route("/user/recipe/{title}/review" , name="review")
      *@Method("POST")
