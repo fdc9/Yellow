@@ -2,9 +2,6 @@
 
 namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
-use AppBundle\Entity\User;
-use AppBundle\Entity\Review;
 
 /**
  * User
@@ -189,7 +186,7 @@ class Recipe
 	 /**
      * Set creationdate
      *
-     * @param date $creationdate
+     * @param \DateTime $creationdate
      *
      * @return Recipe
      */
@@ -203,7 +200,7 @@ class Recipe
 	 /**
      * Get creationdate
      *
-     * @return date
+     * @return \DateTime
      */
     public function getCreationdate()
     {

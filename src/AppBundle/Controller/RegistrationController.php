@@ -22,27 +22,24 @@ use AppBundle\Entity\Recipe;
 class RegistrationController extends Controller
 {
 
-	
 
-	
     /**
      * @Route("/guest/recipes", name="guest")
-     * 
+     *
      */
-     public function guestAction(Request $request)
+    public function guestAction(Request $request)
     {
-        
-		$recipes = $this->getDoctrine()->getRepository(Recipe::class)->findBy(array(), array('title' => 'ASC'));
-		
-       return $this->render('recipe_list/guest_list.html.twig', [
-			'recipes' => $recipes,
-            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
+
+        $recipes = $this->getDoctrine()->getRepository(Recipe::class)->findBy(array(), array('title' => 'ASC'));
+
+        return $this->render('recipe_list/guest_list.html.twig', [
+            'recipes' => $recipes,
+            'base_dir' => realpath($this->getParameter('kernel.root_dir') . '/..') . DIRECTORY_SEPARATOR,
         ]);
     }
-    
 
-	
-     /**
+
+    /**
      * @Route("/login/saved", name="security_login")
      * @Method("POST")
      */
@@ -59,18 +56,19 @@ class RegistrationController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->persist($user);
         $em->flush();
-        
-        	 $token = new UsernamePasswordToken($user, null, 'main', array('ROLE_USER'));
-		      $this->container->get('security.token_storage')->setToken($token);
-		
-				$recipes = $this->getDoctrine()->getRepository(Recipe::class)->findBy(array(), array('title' => 'ASC'));
 
-        		return $this->render('recipe_list/user_list.html.twig', [
-				'username' => $user->getUsername(),
-				'recipes' => $recipes,
-				'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
-			]); 
+        $token = new UsernamePasswordToken($user, null, 'main', array('ROLE_USER'));
+        $this->container->get('security.token_storage')->setToken($token);
+
+        $recipes = $this->getDoctrine()->getRepository(Recipe::class)->findBy(array(), array('title' => 'ASC'));
+
+        return $this->render('recipe_list/user_list.html.twig', [
+            'username' => $user->getUsername(),
+            'recipes' => $recipes,
+            'base_dir' => realpath($this->getParameter('kernel.root_dir') . '/..') . DIRECTORY_SEPARATOR,
+        ]);
     }
+
     /**
      * @Route("/login", name="login")
      */
@@ -99,7 +97,6 @@ class RegistrationController extends Controller
         $this->container->get('security.token_storage')->setToken(null);
         return $this->redirectToRoute('homepage');
     }
-    
- 
-    
+
+
 }

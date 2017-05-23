@@ -14,7 +14,7 @@ parameters:
     # this demo application uses an embedded SQLite database to simplify setup.
     # in a real Symfony application you probably will use a MySQL or PostgreSQL database
     # the path must be relative or else it will not work on Windows
-    env(DATABASE_URL): 'sqlite:///%kernel.root_dir%/../var/data/blog.sqlite'
+    #env(DATABASE_URL): 'sqlite:///%kernel.root_dir%/../var/data/blog.sqlite'
     
     database_host:     127.0.0.1
     database_port:     ~
@@ -22,7 +22,7 @@ parameters:
     database_user:     root
     database_password: ~
     # You should uncomment this if you want use pdo_sqlite
-      database_path: "%kernel.root_dir%/data.db3"
+    # database_path: "%kernel.root_dir%/data.db3"
 
 
     mailer_transport:  smtp
