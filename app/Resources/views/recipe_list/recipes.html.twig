@@ -29,9 +29,9 @@
                             <div class="well well-sm">
 
                                 <div class="text-right">
-                                       {% if(flag) %}
-                                    <a class="btn btn-success btn-green" href="#" id="open-review-box">Leave a Review</a>
-                                           {% endif %}
+                                    {% if(flag) %}
+                                        <a class="btn btn-success btn-green" href="#" id="open-review-box">Leave a Review</a>
+                                    {% endif %}
                                 </div>
 
                                 <div class="row" id="post-review-box" style="display:none;">
@@ -57,7 +57,7 @@
                 <div class="container" >
                     <h1> Reviews</h1>
 
-                    {% for ii in array|reverse %}
+                    {% for review in array|reverse %}
 
                         <div class="container" >
                             <h1> </h1>
@@ -69,30 +69,41 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading" >
             <span itemscope itemtype="http://schema.org/Review">
-	
-            <h3 class="panel-title" itemprop="name">{{ii.recipe.title}}</h3>
+
+            <h3 class="panel-title" itemprop="name">{{review.recipe.title}}</h3>
                                         </div><!--/panel-heading-->
+                                        {% if( review.user.username == app.user.username ) %}
+                                            <form action="{{ path('delete_review',{id : review.id})}}" method="post">
+                                                <input class="btn btn-success btn-danger btn-xs" type="submit" name="recipeId" id="recipeId" value = "X" style="float: right;"></input>
+                                            </form>
+                                        {% endif %}
+
+
                                         <div class="panel-body" itemprop="reviewBody">
-                                            <p> {{ii.text}} </p>
+
+
+
+
+                                            <p> {{review.text}} </p>
 
                                             <span itemprop="author" itemscope itemtype="http://schema.org/Person">
               <small>
-              <span itemprop="name">{{ii.user.username}}</span>
+              <span itemprop="name">{{review.user.username}}</span>
            <span style="padding-right:40px;"></span>
 			 </span>
                                             <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
 
-                                            <meta itemprop="datePublished" content="">{{ii.creationdate}}
+                                            <meta itemprop="datePublished" content="">{{review.creationdate}}
 
                                             <span class="pull-right">
               <span class="reviewRating" itemscope itemtype="http://schema.org/Rating">
               <meta itemprop="worstRating" content="1">
-              <span itemprop="ratingValue">{{ii.Vote}}</span> /
+              <span itemprop="ratingValue">{{review.Vote}}</span> /
               <span itemprop="bestRating"> 5 </span>
               </span><!--/reviewRating-->
 
-                                                {% for i in range(1, ii.Vote) %}
-                                                    {% if(ii.Vote) %}
+                                                {% for i in range(1, review.Vote) %}
+                                                    {% if(review.Vote) %}
                                                         <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                                                     {% endif %}
                                                 {% endfor %}
@@ -142,18 +153,14 @@
             </div>
         </div>
         {% if( recipe.user.username == app.user.username ) %}
-        <form action="{{ path('delete_recipe',{id : recipe.id})}}" method="post">
-            <input class="btn btn-success" type="submit" name="recipeId" id="recipeId" value = "Delete Recipe"></input>
-        </form>
+            <form action="{{ path('delete_recipe',{id : recipe.id})}}" method="post">
+                <input class="btn btn-success" type="submit" name="recipeId" id="recipeId" value = "Delete Recipe"></input>
+            </form>
         {% endif %}
 
-    {% for review in array %}
-        {% if( review.user.username == app.user.username ) %}
-        <form action="{{ path('delete_review',{id : review.id})}}" method="post">
-            <input class="btn btn-success" type="submit" name="recipeId" id="recipeId" value = "Delete Review"></input>
-        </form>
-        {% endif %}
-    {% endfor %}
+
+
+
     </div>
 
 
