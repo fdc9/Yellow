@@ -58,24 +58,6 @@ class Recipe
      */
     private $category;
 
-     /**
-      * @ORM\ManyToMany(targetEntity="Ingredient")
-      * @ORM\JoinTable(name="recipe_ingredient",
-      *      joinColumns={@ORM\JoinColumn(name="recipe_id", referencedColumnName="id")},
-      *      inverseJoinColumns={@ORM\JoinColumn(name="ingredient_id", referencedColumnName="id")}
-      *      )
-      */
-    private $ingredients;
-
-    public function __construct() {
-        $this->ingredients = array();
-    }
-
-     /**
-     * @ORM\Column(type="array")
-     */
-    private $quantity;
-
     /**
      * @ORM\Column(type="float")
      */
@@ -128,15 +110,6 @@ class Recipe
      */
     public function getCount()
     {
-        /*$em = $this->getDoctrine()->getManager();
-        /*$query = $em->createQuery("
-		SELECT COUNT(*)
-		FROM AppBundle:Review rev
-		WHERE rev.recipe = :index"
-        )->setParameter('index', $this->id);
-        $c = $query->getResult();*/
-
-        //$this->count = 2;
         return $this->count;
     }
 
@@ -313,51 +286,4 @@ class Recipe
         return $this->category;
     }
 
-    /**
-     * Set ingredients
-     *
-     * @param array $ingredients
-     *
-     * @return Recipe
-     */
-    public function setIngredients($ingredients)
-    {
-        $this->ingredients = $ingredients;
-
-        return $this;
-    }
-
-    /**
-     * Get ingredients
-     *
-     * @return array
-     */
-    public function getIngredients()
-    {
-        return $this->ingredients;
-    }
-
-    /**
-     * Set quantity
-     *
-     * @param array $quantity
-     *
-     * @return Recipe
-     */
-    public function setQuantity($quantity)
-    {
-        $this->quantity = $quantity;
-
-        return $this;
-    }
-
-    /**
-     * Get quantity
-     *
-     * @return array
-     */
-    public function getQuantity()
-    {
-        return $this->quantity;
-    }
 }

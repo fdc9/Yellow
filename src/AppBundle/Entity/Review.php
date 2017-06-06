@@ -1,12 +1,13 @@
 <?php
 
 namespace AppBundle\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Entity\Recipe;
 use AppBundle\Entity\User;
 /**
- * Recipe
+ * Review
  * @ORM\Entity
  * @ORM\Table(name="Review")
  */

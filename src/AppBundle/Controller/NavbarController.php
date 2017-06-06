@@ -12,11 +12,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Recipe;
 use AppBundle\Entity\Review;
+use AppBundle\Entity\Ingredient;
+use AppBundle\Entity\IngredientRecipe;
 class NavbarController extends Controller
 {
-
-
-	
     /**
      * @Route("/user/new_recipe", name="new_recipe")
 	 *
@@ -36,12 +35,8 @@ class NavbarController extends Controller
      */
      public function recipes(Request $request, $category, $order_by, $order_type)
     {
-		//['publishedAt' => 'DESC']
-		
 		$user = $this->get('security.token_storage')->getToken()->getUser();
-		
-		
-		
+
 		if($category == 'All')
 			$recipes = $this->getDoctrine()->getRepository(Recipe::class)->findBy(array(), array($order_by => $order_type));
 		else
@@ -52,20 +47,22 @@ class NavbarController extends Controller
 
 		foreach ($recipes as $recp){
             $em = $this->getDoctrine()->getManager();
+
             $query = $em->createQuery("
               SELECT '*'
               FROM AppBundle:Review rev
               WHERE rev.recipe = :index"
             )->setParameter('index', $recp->getId());
+
             $c = $query->getResult();
             $recp->setCount(count($c));
 
             if(count($c)>0) {
 
                 $query = $em->createQuery("
-              SELECT SUM(rev.vote)
-              FROM AppBundle:Review rev
-              WHERE rev.recipe = :index"
+                  SELECT SUM(rev.vote)
+                  FROM AppBundle:Review rev
+                  WHERE rev.recipe = :index"
                 )->setParameter('index', $recp->getId())->getSingleScalarResult();
                 
                 $recp->setAverage($query/count($c));
@@ -87,11 +84,13 @@ class NavbarController extends Controller
      public function findRecipes(Request $request)
     {
 		$em = $this->getDoctrine()->getManager();
+
 		$query = $em->createQuery("
-		SELECT r 
-		FROM AppBundle:Recipe r 
-		WHERE r.title like :search or r.description like :search"
+            SELECT r 
+            FROM AppBundle:Recipe r 
+            WHERE r.title like :search or r.description like :search"
 		)->setParameter('search', '%'.$request->get('search').'%');
+
 		$recipes = $query->getResult();
 		//$recipes=null;
 		
@@ -109,6 +108,8 @@ class NavbarController extends Controller
      */
 	public function addRecipe(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+
         $recipe = new Recipe();
         $recipe->setUser($this->get('security.token_storage')->getToken()->getUser()->getUsername());
         $recipe->setTitle($request->get('title'));
@@ -117,19 +118,33 @@ class NavbarController extends Controller
 		$recipe->setCreationdate(date('d/m/Y H:i'));
 		$recipe->setCategory($request->get('categ'));
 		$recipe->setDescription($request->get('descr'));
-		$ingr = array();
-		$qt = array();
-		$size = $request->get('count-hidden');
-  		for($i = 0; $i < $size; $i++){
-			array_push($ingr, $request->get('ingredient'.$i));
-			array_push($qt, $request->get('quantity'.$i));
-		}
-		$recipe->setIngredients($ingr);
-		$recipe->setQuantity($qt);
-        $em = $this->getDoctrine()->getManager();
+
+        $size = $request->get('count-hidden');
+
+        for($i = 0; $i < $size; $i++){
+
+            $ingrec = new IngredientRecipe();
+
+            $ing = $em->getRepository('AppBundle:Ingredient')->findOneByName($request->get('ingredient'.$i));
+
+            /*if(!$ing){
+                $ingredient = new Ingredient();
+                $ingredient->setName($request->get('ingredient'.$i));
+                $em->persist($ingredient);
+                $em->flush();
+                $ingrec->setIngredient($ingredient);
+            }
+            else{*/
+                $ingrec->setIngredient($ing);
+            //}
+            $ingrec->setQuantity($request->get('quantity'.$i));
+            $ingrec->setRecipe($recipe);
+            $em->persist($ingrec);
+            $em->flush();
+        }
         $em->persist($recipe);
         $em->flush();
-		
-		 return $this->redirectToRoute('rec', array('title' => $request->get('title')));
+
+        return $this->redirectToRoute('rec', array('title' => $request->get('title')));
     }
 }

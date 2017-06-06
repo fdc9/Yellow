@@ -17,7 +17,7 @@ use AppBundle\Entity\Ingredient;
 
 class RecipeController extends Controller
 {
-	    /**
+    /**
      * @Route("/recipe/{title}", name="rec")
 	 *
      */
@@ -29,24 +29,24 @@ class RecipeController extends Controller
         $recipe = $this->getDoctrine()->getRepository(Recipe::class)->findOneByTitle($title);
         $repository = $this->getDoctrine()->getRepository('AppBundle:Review');
         $arrayReview = $repository->findByRecipe($recipe);
+
         $idUser = $user->getId();
         $userRecipe = $recipe->getUser();
         $idUserRecipe = $userRecipe->getId();
+
         if($idUser == $idUserRecipe )
             $flag=FALSE;
 
-       foreach($arrayReview as $ar){
+        foreach($arrayReview as $ar){
             if($ar->getUser()->getId() == $idUser)
-              $flag=FALSE;
+            $flag=FALSE;
         }
 
         if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             $username = 'guest';
         }
         else
-         $username = $user->getUsername();
-
-
+            $username = $user->getUsername();
 
         return $this->render('recipe_list/recipes.html.twig', [
             'flag' => $flag,
@@ -69,9 +69,8 @@ class RecipeController extends Controller
         $em->flush();
 
         $recipes = $this->getDoctrine()->getRepository(Recipe::class)->findBy(array(), array('title' => 'ASC'));
+
         return $this->redirectToRoute('recipes');
-
-
     }
 
 
@@ -88,8 +87,6 @@ class RecipeController extends Controller
         $em->flush();
 
         return $this->redirectToRoute('rec', array('title' => $title));
-
-
     }
 
 

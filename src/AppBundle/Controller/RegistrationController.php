@@ -21,15 +21,12 @@ use AppBundle\Entity\Recipe;
 
 class RegistrationController extends Controller
 {
-
-
     /**
      * @Route("/guest/recipes", name="guest")
      *
      */
     public function guestAction(Request $request)
     {
-
         $recipes = $this->getDoctrine()->getRepository(Recipe::class)->findBy(array(), array('title' => 'ASC'));
 
         return $this->render('recipe_list/guest_list.html.twig', [
@@ -97,6 +94,5 @@ class RegistrationController extends Controller
         $this->container->get('security.token_storage')->setToken(null);
         return $this->redirectToRoute('homepage');
     }
-
 
 }
