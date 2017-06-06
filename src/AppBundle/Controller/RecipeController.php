@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\IngredientRecipe;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -14,6 +15,7 @@ use AppBundle\Entity\Recipe;
 use AppBundle\Entity\Review;
 use AppBundle\Entity\User;
 use AppBundle\Entity\Ingredient;
+use AppBundle\Entity\Ingredient_recipe;
 
 class RecipeController extends Controller
 {
@@ -21,26 +23,39 @@ class RecipeController extends Controller
      * @Route("/recipe/{title}", name="rec")
 	 *
      */
-    public function rec(Request $request , $title)
+    public function viewRecipeAction(Request $request , $title)
     {
 
         $flag=TRUE;
         $user = $this->get('security.token_storage')->getToken()->getUser();
+
         $recipe = $this->getDoctrine()->getRepository(Recipe::class)->findOneByTitle($title);
         $repository = $this->getDoctrine()->getRepository('AppBundle:Review');
         $arrayReview = $repository->findByRecipe($recipe);
 
-        $idUser = $user->getId();
-        $userRecipe = $recipe->getUser();
-        $idUserRecipe = $userRecipe->getId();
+        if($user != 'anon.') {
 
-        if($idUser == $idUserRecipe )
-            $flag=FALSE;
+            $idUser = $user->getId();
+            $userRecipe = $recipe->getUser();
+            $idUserRecipe = $userRecipe->getId();
 
-        foreach($arrayReview as $ar){
-            if($ar->getUser()->getId() == $idUser)
-            $flag=FALSE;
+            if ($idUser == $idUserRecipe)
+                $flag = FALSE;
+
+            foreach ($arrayReview as $ar) {
+                if ($ar->getUser()->getId() == $idUser)
+                    $flag = FALSE;
+            }
         }
+        else {
+            $flag = FALSE;
+
+        }
+
+
+        $repository2 = $this->getDoctrine()->getRepository('AppBundle:Ingredient_recipe');
+        $ingrendients_array = $repository2->findByRecipe($recipe);
+
 
         if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             $username = 'guest';
@@ -51,6 +66,7 @@ class RecipeController extends Controller
         return $this->render('recipe_list/recipes.html.twig', [
             'flag' => $flag,
             'array'=>$arrayReview,
+            'ingredient'=>$ingrendients_array,
             'recipe' => $recipe,
             'username' => $username,
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
@@ -61,7 +77,7 @@ class RecipeController extends Controller
      * @Route("/delete/{id}", name="delete_recipe")
      * @Method("POST")
      */
-    public function recipe(Request $request, $id)
+    public function deleteRecipeAction(Request $request, $id)
     {
         $recipe = $this->getDoctrine()->getRepository(Recipe::class)->findOneById($id);
         $em = $this->getDoctrine()->getManager();
@@ -78,7 +94,7 @@ class RecipeController extends Controller
      * @Route("/delete/review/{id}", name="delete_review")
      * @Method("POST")
      */
-    public function deleteReview(Request $request, $id)
+    public function deleteReviewAction(Request $request, $id)
     {
         $review = $this->getDoctrine()->getRepository(Review::class)->findOneById($id);
         $title = $review->getRecipe()->getTitle();
@@ -97,7 +113,7 @@ class RecipeController extends Controller
      *@Route("/user/recipe/{title}/review" , name="review")
      *@Method("POST")
      */
-    public function review(Request $request, $title)
+    public function addReviewAction(Request $request, $title)
     {
         $username = $this->get('security.token_storage')->getToken()->getUsername();
         $user = $this->getDoctrine()->getRepository(User::class)->findOneByUsername($username);
@@ -120,7 +136,7 @@ class RecipeController extends Controller
      * @Route("/user/new_recipe/saved", name="save_recipe")
      * @Method("POST")
      */
-	public function addRecipe(Request $request)
+	public function saveRecipeAction(Request $request)
     {
         $username = $this->get('security.token_storage')->getToken()->getUsername();
         $user = $this->getDoctrine()->getRepository(User::class)->findOneByUsername($username);
@@ -136,11 +152,13 @@ class RecipeController extends Controller
 		$recipe->setCategory($request->get('categ'));
 		$recipe->setDescription($request->get('descr'));
 
-		$ingredient_array = array();
-		$qt = array();
+		//$ingredient_array = array();
+		//$qt = array();
 		$size = $request->get('count-hidden');
 
 
+        $em->persist($recipe);
+        $em->flush();
 
   		for($i = 0; $i < $size; $i++){
 
@@ -157,16 +175,20 @@ class RecipeController extends Controller
   		        $ingredient = $ing;
             }
 
+            $ingredient_recipe = new Ingredient_recipe();
+            $ingredient_recipe->setIngredient($ingredient);
+            $ingredient_recipe->setRecipe($recipe);
+            $ingredient_recipe->setQuantity($request->get('quantity'.$i));
+			//array_push($ingredient_array, $ingredient);
+			//array_push($qt, $request->get('quantity'.$i));
 
-			array_push($ingredient_array, $ingredient);
-			array_push($qt, $request->get('quantity'.$i));
+            $em->persist($ingredient_recipe);
+            $em->flush();
 		}
-        $recipe->setIngredients($ingredient_array);
-		$recipe->setQuantity($qt);
-        $em->persist($recipe);
-        $em->flush();
-		
-		 return $this->redirectToRoute('rec', array('title' => $request->get('title')));
+
+
+
+        return $this->redirectToRoute('rec', array('title' => $request->get('title')));
 
     }
 }

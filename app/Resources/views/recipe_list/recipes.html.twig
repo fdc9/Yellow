@@ -72,10 +72,12 @@
 
             <h3 class="panel-title" itemprop="name">{{review.recipe.title}}</h3>
                                         </div><!--/panel-heading-->
+                                        {% if is_granted("ROLE_USER") %}
                                         {% if( review.user.username == app.user.username ) %}
                                             <form action="{{ path('delete_review',{id : review.id})}}" method="post">
                                                 <input class="btn btn-success btn-danger btn-xs" type="submit" name="recipeId" id="recipeId" value = "X" style="float: right;"></input>
                                             </form>
+                                        {% endif %}
                                         {% endif %}
 
 
@@ -143,19 +145,21 @@
                 </a>
                 <h2>Ingredients</h2>
 
-                {% for key, ingr in recipe.ingredients %}
+                {% for key, ingr in ingredient %}
 
-                    <label> - {{ recipe.ingredients[key].getName() }}</label>
-                    <label> , {{ recipe.quantity[key]}}</label><br>
+                    <label> - {{ ingredient[key].getIngredient().getName() }}</label>
+                    <label> , {{ ingredient[key].getQuantity() }}</label><br>
 
                 {% endfor %}
 
             </div>
         </div>
+        {% if is_granted("ROLE_USER") %}
         {% if( recipe.user.username == app.user.username ) %}
             <form action="{{ path('delete_recipe',{id : recipe.id})}}" method="post">
                 <input class="btn btn-success" type="submit" name="recipeId" id="recipeId" value = "Delete Recipe"></input>
             </form>
+        {% endif %}
         {% endif %}
 
 

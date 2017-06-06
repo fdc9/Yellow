@@ -22,7 +22,7 @@ use AppBundle\Entity\Recipe;
 class RegistrationController extends Controller
 {
     /**
-     * @Route("/guest/recipes", name="guest")
+     * @Route("/guest/recipes/", name="guest")
      *
      */
     public function guestAction(Request $request)
@@ -40,7 +40,7 @@ class RegistrationController extends Controller
      * @Route("/login/saved", name="security_login")
      * @Method("POST")
      */
-    public function regAction(Request $request)
+    public function registrationAction(Request $request)
     {
         $user = new User();
         $user->setFullname($request->get('username'));

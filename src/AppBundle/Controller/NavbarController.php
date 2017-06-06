@@ -20,7 +20,7 @@ class NavbarController extends Controller
      * @Route("/user/new_recipe", name="new_recipe")
 	 *
      */
-     public function newRecipe(Request $request)
+     public function newRecipeAction(Request $request)
     {
     	$user = $this->get('security.token_storage')->getToken()->getUser();
 		return $this->render('navbar/new_recipe.html.twig', [
@@ -30,10 +30,10 @@ class NavbarController extends Controller
     }
 	
 	 /**
-     * @Route("/user/recipes/{category}/{order_by}/{order_type}", defaults={"category": "All", "order_by": "title", "order_type": "ASC"}, name="recipes")
+     * @Route("/recipes/{category}/{order_by}/{order_type}", defaults={"category": "All", "order_by": "title", "order_type": "ASC"}, name="recipes")
 	 * @Method("GET")
      */
-     public function recipes(Request $request, $category, $order_by, $order_type)
+     public function listRecipesAction(Request $request, $category, $order_by, $order_type)
     {
 		$user = $this->get('security.token_storage')->getToken()->getUser();
 
@@ -42,8 +42,7 @@ class NavbarController extends Controller
 		else
 			$recipes = $this->getDoctrine()->getRepository(Recipe::class)->findBy(array('category' => $category), array($order_by => $order_type));
 
-		if($user =='anon.')
-		    return $this->redirectToRoute('guest', array('recipes' => $recipes));
+
 
 		foreach ($recipes as $recp){
             $em = $this->getDoctrine()->getManager();
@@ -68,7 +67,18 @@ class NavbarController extends Controller
                 $recp->setAverage($query/count($c));
             }
 
+            $em->flush();
         }
+
+
+        if($user =='anon.'){
+            return $this->render('recipe_list/guest_list.html.twig', [
+
+                'recipes' => $recipes,
+                'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
+            ]);
+        }
+            //return $this->redirectToRoute('guest', array('recipes' => $recipes));//, 'category' => $category, 'orderby' => $order_by, 'ordertype' => $order_type));
 
         return $this->render('recipe_list/user_list.html.twig', [
             'username' => $user->getUsername(),
@@ -81,7 +91,7 @@ class NavbarController extends Controller
      * @Route("/user/findrecipes", name="find")
      * @Method("POST")
      */
-     public function findRecipes(Request $request)
+     public function findRecipesAction(Request $request)
     {
 		$em = $this->getDoctrine()->getManager();
 
@@ -106,7 +116,7 @@ class NavbarController extends Controller
      * @Route("/user/new_recipe/saved", name="save_recipe")
      * @Method("POST")
      */
-	public function addRecipe(Request $request)
+	public function addRecipeAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
