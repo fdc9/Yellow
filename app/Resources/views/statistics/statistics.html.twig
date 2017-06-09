@@ -1,0 +1,105 @@
+{% extends 'navbar/user_navbar.html.twig' %}
+
+
+
+{% block body %}
+
+    <div id="sidebar" class="col-sm-9">
+
+
+        {% for user in users %}
+        <div id='content' class='row-fluid well'>
+
+            <div class='span8 main'>
+
+
+                <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"/>
+
+
+
+                <div class="container">
+
+
+
+                        <div class="media">
+                            <a class="pull-left" href="#">
+                                <img class="media-object" src="http://www.thefmleague.com/wp-content/uploads/2016/02/1139-128x128.png">
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading">{{ user.username}}</h4>
+
+                                <p></p>
+                                <ul class="list-inline list-unstyled">
+                                    <li><span> Total Recipes: {{ user.count }} </span></li>
+                                    <li>|</li>
+                                    <span>Average Vote: </span>
+
+                                    <li>
+                                        {% if(user.average>0.5) %}
+                                            <span class="glyphicon glyphicon-star"></span>
+                                        {% else %}
+                                            <span class="glyphicon glyphicon-star-empty"></span>
+                                        {% endif %}
+                                        {% if(user.average>1.5) %}
+                                            <span class="glyphicon glyphicon-star"></span>
+                                        {% else %}
+                                            <span class="glyphicon glyphicon-star-empty"></span>
+                                        {% endif %}
+                                        {% if(user.average>2.5) %}
+                                            <span class="glyphicon glyphicon-star"></span>
+                                        {% else %}
+                                            <span class="glyphicon glyphicon-star-empty"></span>
+                                        {% endif %}
+                                        {% if(user.average>3.5) %}
+                                            <span class="glyphicon glyphicon-star"></span>
+                                        {% else %}
+                                            <span class="glyphicon glyphicon-star-empty"></span>
+                                        {% endif %}
+                                        {% if(user.average>4.5) %}
+                                            <span class="glyphicon glyphicon-star"></span>
+                                        {% else %}
+                                            <span class="glyphicon glyphicon-star-empty"></span>
+                                        {% endif %}
+                                    </li>
+                                    <li>|</li>
+                                </ul>
+                               <span> Mail: {{ user.email }} </span>
+
+                            </div>
+                        </div>
+
+
+                </div>
+             </div>
+           </div>
+        {% endfor %}
+    </div>
+
+
+
+    <div id="sidebar" class="col-sm-3">
+        <head>
+
+        </head>
+        <body>
+
+
+
+        <div id='content' class='row-fluid well' >
+
+            <div class='span8 main'>
+
+                <h2>Yellow-Saffron</h2>
+                <h3>Statistics</h3>
+                <h4>La statistica completa di tutti gli user che postano le loro ricette.</h4>
+
+            </div>
+        </div>
+
+
+
+
+
+    </body>
+
+{% endblock %}
