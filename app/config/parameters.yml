@@ -12,3 +12,5 @@ parameters:
     mailer_user: null
     mailer_password: null
     secret: 312jk123jk12jkjkjkasjdkasd
+    brochures_directory: '%kernel.root_dir%/web/images'
+
