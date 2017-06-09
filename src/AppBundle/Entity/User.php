@@ -52,6 +52,18 @@ class User implements UserInterface
      */
     private $username;
 
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $count = 0;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $average = -1;
+
+
     /**
      * @var string
      *
@@ -129,6 +141,40 @@ class User implements UserInterface
     {
         $this->password = $password;
     }
+
+
+    /**
+     * Get average
+     *
+     * @return float
+     */
+    public function getAverage()
+    {
+        return $this->average;
+    }
+
+    public function setAverage($avg){
+        $this->average = $avg;
+    }
+
+
+    /**
+     * Get count
+     *
+     * @return integer
+     */
+    public function getCount()
+    {
+        return $this->count;
+    }
+
+    public function setCount($count){
+        $this->count = $count;
+    }
+
+
+
+
 
     /**
      * Returns the roles or permissions granted to the user for security.

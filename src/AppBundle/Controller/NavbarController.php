@@ -11,6 +11,7 @@ use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Recipe;
+use AppBundle\Entity\User;
 use AppBundle\Entity\Review;
 use AppBundle\Entity\Ingredient;
 use AppBundle\Entity\IngredientRecipe;
@@ -28,7 +29,60 @@ class NavbarController extends Controller
 			'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
 		]);
     }
-	
+
+    /**
+     * @Route("/statistics", name="statistics")
+     *
+     */
+    public function statisticsAction(Request $request)
+    {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $users = $this->getDoctrine()->getRepository(User::class)->findAll();
+
+
+        foreach ($users as $usr) {
+            $em = $this->getDoctrine()->getManager();
+
+            $query = $em->createQuery("
+              SELECT '*'
+              FROM AppBundle:Recipe rec
+              WHERE rec.user = :index"
+            )->setParameter('index', $usr->getId());
+
+            $c = $query->getResult();
+            $usr->setCount(count($c));
+
+
+
+            if(count($c)>0) {
+
+                $query = $em->createQuery("
+                  SELECT SUM(rec.average)
+                  FROM AppBundle:Recipe rec
+                  WHERE rec.user = :index"
+                )->setParameter('index', $usr->getId())->getSingleScalarResult();
+
+                $usr->setAverage($query/count($c));
+            }
+
+
+
+
+
+
+            $em->flush();
+        }
+
+
+        return $this->render('statistics/statistics.html.twig', [
+          'username' => $user->getUsername(),
+          'users' => $users,
+        'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
+        ]);
+    }
+
+
+
 	 /**
      * @Route("/recipes/{category}/{order_by}/{order_type}", defaults={"category": "All", "order_by": "title", "order_type": "ASC"}, name="recipes")
 	 * @Method("GET")
