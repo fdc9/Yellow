@@ -3,21 +3,23 @@
 {% block body %}
 
 <div class="container">
-	<!--<input id="categ" name="categ" value= "">-->
+	
+	<div class="container">
+		<!--<input id="categ" name="categ" value= "">-->
 
-	<li class="dropdown pull-right btn btn-default">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Order By <span class="caret"></span></a>
-		<ul class="dropdown-menu" role="menu">
-			<li><a href="{{path('recipes', { 'order_by': 'title', 'order_type': 'ASC' })}}"> Title ↑</a></li>
-			<li><a href="{{path('recipes', { 'order_by': 'creationdate', 'order_type': 'ASC' })}}"> Date ↑</a></li>
-			<li><a href="#"> Votes ↑ #dafare#</a></li>
-			<li class="divider"></li>
-			<li><a href="{{path('recipes', { 'order_by': 'title', 'order_type': 'DESC' })}}"> Title ↓</a></li>
-			<li><a href="{{path('recipes', { 'order_by': 'creationdate', 'order_type': 'DESC' })}}"> Date ↓</a></li>
-			<li><a href="#"> Votes ↓ #dafare#</</a></li>
-		</ul>
-	</li>
-</div>
+		<li class="dropdown pull-right btn btn-default">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown">Order By <span class="caret"></span></a>
+			<ul class="dropdown-menu" role="menu">
+				<li><a href="{{path('recipes', { 'order_by': 'title', 'order_type': 'ASC' })}}"> Title ↑</a></li>
+				<li><a href="{{path('recipes', { 'order_by': 'creationdate', 'order_type': 'ASC' })}}"> Date ↑</a></li>
+				<li><a href="{{path('recipes', { 'order_by': 'average', 'order_type': 'ASC' })}}"> Votes ↑</a></li>
+				<li class="divider"></li>
+				<li><a href="{{path('recipes', { 'order_by': 'title', 'order_type': 'DESC' })}}"> Title ↓</a></li>
+				<li><a href="{{path('recipes', { 'order_by': 'creationdate', 'order_type': 'DESC' })}}"> Date ↓</a></li>
+				<li><a href="{{path('recipes', { 'order_by': 'average', 'order_type': 'DESC' })}}"> Votes ↓</a></li>
+			</ul>
+		</li>
+	</div>
 
 
 <div class="container" style="margin-top: 20px;">

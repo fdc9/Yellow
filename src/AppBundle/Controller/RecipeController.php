@@ -186,8 +186,6 @@ class RecipeController extends Controller
             $em->flush();
 		}
 
-
-
         return $this->redirectToRoute('rec', array('title' => $request->get('title')));
 
     }

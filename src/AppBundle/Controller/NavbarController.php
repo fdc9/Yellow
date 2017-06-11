@@ -91,14 +91,36 @@ class NavbarController extends Controller
     {
 		$user = $this->get('security.token_storage')->getToken()->getUser();
 
-		if($category == 'All')
-			$recipes = $this->getDoctrine()->getRepository(Recipe::class)->findBy(array(), array($order_by => $order_type));
-		else
-			$recipes = $this->getDoctrine()->getRepository(Recipe::class)->findBy(array('category' => $category), array($order_by => $order_type));
+		$this->updateAvg($category);
 
+        if($category == 'All')
+            $recipes = $this->getDoctrine()->getRepository(Recipe::class)->findBy(array(), array($order_by => $order_type));
+        else
+            $recipes = $this->getDoctrine()->getRepository(Recipe::class)->findBy(array('category' => $category), array($order_by => $order_type));
 
+        if($user =='anon.'){
+            return $this->render('recipe_list/guest_list.html.twig', [
 
-		foreach ($recipes as $recp){
+                'recipes' => $recipes,
+                'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
+            ]);
+        }
+            //return $this->redirectToRoute('guest', array('recipes' => $recipes));//, 'category' => $category, 'orderby' => $order_by, 'ordertype' => $order_type));
+
+        return $this->render('recipe_list/user_list.html.twig', [
+            'username' => $user->getUsername(),
+            'recipes' => $recipes,
+            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
+        ]);
+    }
+
+    public function updateAvg($category){
+        if($category == 'All')
+            $recipes = $this->getDoctrine()->getRepository(Recipe::class)->findBy(array());
+        else
+            $recipes = $this->getDoctrine()->getRepository(Recipe::class)->findBy(array('category' => $category));
+
+        foreach ($recipes as $recp){
             $em = $this->getDoctrine()->getManager();
 
             $query = $em->createQuery("
@@ -117,28 +139,12 @@ class NavbarController extends Controller
                   FROM AppBundle:Review rev
                   WHERE rev.recipe = :index"
                 )->setParameter('index', $recp->getId())->getSingleScalarResult();
-                
+
                 $recp->setAverage($query/count($c));
             }
 
             $em->flush();
         }
-
-
-        if($user =='anon.'){
-            return $this->render('recipe_list/guest_list.html.twig', [
-
-                'recipes' => $recipes,
-                'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
-            ]);
-        }
-            //return $this->redirectToRoute('guest', array('recipes' => $recipes));//, 'category' => $category, 'orderby' => $order_by, 'ordertype' => $order_type));
-
-        return $this->render('recipe_list/user_list.html.twig', [
-            'username' => $user->getUsername(),
-            'recipes' => $recipes,
-            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
-        ]);
     }
 
      /**
@@ -191,16 +197,16 @@ class NavbarController extends Controller
 
             $ing = $em->getRepository('AppBundle:Ingredient')->findOneByName($request->get('ingredient'.$i));
 
-            /*if(!$ing){
+            if(!$ing){
                 $ingredient = new Ingredient();
                 $ingredient->setName($request->get('ingredient'.$i));
                 $em->persist($ingredient);
                 $em->flush();
                 $ingrec->setIngredient($ingredient);
             }
-            else{*/
+            else{
                 $ingrec->setIngredient($ing);
-            //}
+            }
             $ingrec->setQuantity($request->get('quantity'.$i));
             $ingrec->setRecipe($recipe);
             $em->persist($ingrec);
