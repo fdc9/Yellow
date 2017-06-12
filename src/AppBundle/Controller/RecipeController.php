@@ -110,8 +110,16 @@ class RecipeController extends Controller
      */
     public function deleteRecipeAction(Request $request, $id)
     {
-        $recipe = $this->getDoctrine()->getRepository(Recipe::class)->findOneById($id);
         $em = $this->getDoctrine()->getManager();
+
+        $ingrec = $this->getDoctrine()->getRepository(Ingredient_recipe::class)->findBy(array('recipe' => $id));
+
+        foreach ($ingrec as $ir){
+            $em->remove($ir);
+            $em->flush();
+        }
+
+        $recipe = $this->getDoctrine()->getRepository(Recipe::class)->findOneById($id);
         $em->remove($recipe);
         $em->flush();
 

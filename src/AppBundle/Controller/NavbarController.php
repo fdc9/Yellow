@@ -52,8 +52,6 @@ class NavbarController extends Controller
             $c = $query->getResult();
             $usr->setCount(count($c));
 
-
-
             if(count($c)>0) {
 
                 $query = $em->createQuery("
@@ -64,11 +62,6 @@ class NavbarController extends Controller
 
                 $usr->setAverage($query/count($c));
             }
-
-
-
-
-
 
             $em->flush();
         }
