@@ -17,6 +17,9 @@ use AppBundle\Entity\User;
 use AppBundle\Entity\Ingredient;
 use AppBundle\Entity\Ingredient_recipe;
 
+use AppBundle\Entity\Product;
+use AppBundle\Form\ProductType;
+
 class RecipeController extends Controller
 {
     /**
@@ -63,12 +66,40 @@ class RecipeController extends Controller
         else
             $username = $user->getUsername();
 
+        $product = new Product();
+        $form = $this->createForm(ProductType::class, $product);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // $file stores the uploaded PDF file
+            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+            $file = $product->getBrochure();
+
+            // Generate a unique name for the file before saving it
+            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+
+            $brochuresDir = $this->container->getParameter('kernel.root_dir') . '/../web/images';
+            $file->move($brochuresDir, $fileName);
+
+            // Update the 'brochure' property to store the PDF file name
+            // instead of its contents
+            $product->setBrochure($fileName);
+            $recipe->setImagePath($fileName);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($recipe);
+            $em->flush();
+
+
+        }
+
+
         return $this->render('recipe_list/recipes.html.twig', [
             'flag' => $flag,
             'array'=>$arrayReview,
             'ingredient'=>$ingrendients_array,
             'recipe' => $recipe,
             'username' => $username,
+            'form' => $form->createView(),
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
         ]);
     }
@@ -151,6 +182,7 @@ class RecipeController extends Controller
 		$recipe->setCreationdate(date('d/m/Y H:i'));
 		$recipe->setCategory($request->get('categ'));
 		$recipe->setDescription($request->get('descr'));
+		$recipe->setImagePath("empty_gallery.png");
 
 		//$ingredient_array = array();
 		//$qt = array();

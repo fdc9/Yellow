@@ -141,7 +141,7 @@
 
             <div class='span8 main'>
                 <a href ="#">
-                    <img class="media-object" src="https://hips.hearstapps.com/cosmouk.cdnds.net/15/02/640x960/roasted-red-pepper-pasta-vegan-glutenfree-10-ingredients-and-so-creamy-and-delicious.jpg?crop=1xw:0.6666666666666666xh;center,top&resize=200:*">
+                    <img width="250" height="200" class="media-object" src={{ asset('images/' ~ recipe.imagePath) }}>
                 </a>
                 <h2>Ingredients</h2>
 
@@ -156,9 +156,15 @@
         </div>
         {% if is_granted("ROLE_USER") %}
         {% if( recipe.user.username == app.user.username ) %}
+        <div id='content' class='row-fluid well' >
+            {{ form_start(form) }}
+            {{ form_row(form.brochure) }}
+            {{ form_end(form) }}
+            <br>
             <form action="{{ path('delete_recipe',{id : recipe.id})}}" method="post">
                 <input class="btn btn-success" type="submit" name="recipeId" id="recipeId" value = "Delete Recipe"></input>
             </form>
+        </div>
         {% endif %}
         {% endif %}
 

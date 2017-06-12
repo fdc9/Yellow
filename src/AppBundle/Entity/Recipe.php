@@ -68,6 +68,11 @@ class Recipe
      */
     private $count = 0;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $imagePath;
+
 
     /**
      * Get id
@@ -284,6 +289,30 @@ class Recipe
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * Set imagePath
+     *
+     * @param string $title
+     *
+     * @return ImagePath
+     */
+    public function setImagePath($path)
+    {
+        $this->imagePath = $path;
+
+        return $this;
+    }
+
+    /**
+     * Get imagePath
+     *
+     * @return string
+     */
+    public function getImagePath()
+    {
+        return $this->imagePath;
     }
 
 }
