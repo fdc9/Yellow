@@ -41,6 +41,9 @@ class NavbarController extends Controller
 
 
         foreach ($users as $usr) {
+
+            $this->updateAvg('All');
+
             $em = $this->getDoctrine()->getManager();
 
             $query = $em->createQuery("
