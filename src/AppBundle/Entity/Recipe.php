@@ -73,6 +73,11 @@ class Recipe
      */
     private $imagePath;
 
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $imagePreparationPath;
+
 
     /**
      * Get id
@@ -314,5 +319,30 @@ class Recipe
     {
         return $this->imagePath;
     }
+
+    /**
+     * Set imagePreparationPath
+     *
+     * @param array $path
+     *
+     * @return ImagePreparationPath
+     */
+    public function setImagePreparationPath($path)
+    {
+        $this->imagePreparationPath = $path;
+
+        return $this;
+    }
+
+    /**
+     * Get imagePath
+     *
+     * @return array
+     */
+    public function getImagePreparationPath()
+    {
+        return $this->imagePreparationPath;
+    }
+
 
 }

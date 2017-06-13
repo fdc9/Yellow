@@ -23,7 +23,40 @@
                 </ul>
                 <p>{{ recipe.description|nl2br }}<p>
 
-                <div class="container">
+                <div class="container-fluid">
+
+                    {% for image in recipe.imagePreparationPath %}
+
+
+
+                        <div class="col-xs-6 col-sm-3">
+
+                            <a href="#" class="thumbnail" data-toggle="modal" data-target="#lightbox">
+                                <img src={{ asset('images/' ~ image) }} alt="...">
+                            </a>
+
+                                </div>
+
+
+
+                        {% endfor %}
+                </div>
+
+                <div id="lightbox" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <button type="button" class="close hidden" data-dismiss="modal" aria-hidden="true">×</button>
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <img src="" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                        <div class="container">
                     <div class="row" style="margin-top:40px;">
                         <div class="col-md-8">
                             <div class="well well-sm">
@@ -141,7 +174,7 @@
 
             <div class='span8 main'>
                 <a href ="#">
-                    <img width="250" height="200" class="media-object" src={{ asset('images/' ~ recipe.imagePath) }}>
+                    <img width="240" height="200" class="media-object" src={{ asset('images/' ~ recipe.imagePath) }}>
                 </a>
                 <h2>Ingredients</h2>
 
@@ -157,14 +190,26 @@
         {% if is_granted("ROLE_USER") %}
         {% if( recipe.user.username == app.user.username ) %}
         <div id='content' class='row-fluid well' >
+
             {{ form_start(form) }}
-            {{ form_row(form.brochure) }}
-            {{ form_end(form) }}
             <br>
+            {{ form_row(form.brochure) }}
+            <br>
+            {{ form_row(form.save) }}
+            <br>
+            {{ form_end(form) }}
+            {{ form_start(form2) }}
+            {{ form_row(form2.brochurePreparation) }}
+            <br>
+            {{ form_row(form2.savePrepation) }}
+            <br>
+            {{ form_end(form2) }}
+            <br>
+
             <form action="{{ path('delete_recipe',{id : recipe.id})}}" method="post">
                 <input class="btn btn-success" type="submit" name="recipeId" id="recipeId" value = "Delete Recipe"></input>
             </form>
-        </div>
+
         {% endif %}
         {% endif %}
 
@@ -173,8 +218,6 @@
 
     </div>
 
-
-
-
     </body>
 {% endblock %}
+

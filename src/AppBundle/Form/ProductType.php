@@ -15,11 +15,25 @@ class ProductType extends AbstractType
     {
         $builder
             // ...
-            ->add('brochure', FileType::class, array('label' => 'Brochure (PDF file)'))
-            ->add('save', SubmitType::class, array('label' => 'save'))
+            ->add('brochure', FileType::class, array('label' => 'Insert recipe image'))
+            ->add('save', SubmitType::class, array('label' => 'save','attr'=>array('class'=> 'btn btn-success')))
+
             // ...
         ;
     }
+
+//    public function buildForm2(FormBuilderInterface $builder, array $options)
+//    {
+//        $builder
+//            // ...
+//
+//            ->add('brochurePreparation', FileType::class, array('label' => 'Insert preparation image'))
+//            ->add('savePrepation', SubmitType::class, array('label' => 'save','attr'=>array('class'=> 'btn btn-success')))
+//            // ...
+//        ;
+//    }
+
+
 
     public function configureOptions(OptionsResolver $resolver)
     {

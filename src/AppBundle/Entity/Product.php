@@ -33,5 +33,17 @@ class Product
 
         return $this;
     }
+
+    public function getBrochurePreparation()
+    {
+        return $this->brochure;
+    }
+
+    public function setBrochurePreparation($brochure)
+    {
+        $this->brochure = $brochure;
+
+        return $this;
+    }
 }
 

@@ -2,6 +2,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\IngredientRecipe;
+use AppBundle\Form\ImagePreparationType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -69,8 +70,10 @@ class RecipeController extends Controller
         $product = new Product();
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
+        $form2 = $this->createForm(ImagePreparationType::class, $product);
+        $form2->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()){
             // $file stores the uploaded PDF file
             /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
             $file = $product->getBrochure();
@@ -84,14 +87,43 @@ class RecipeController extends Controller
             // Update the 'brochure' property to store the PDF file name
             // instead of its contents
             $product->setBrochure($fileName);
-            $recipe->setImagePath($fileName);
+
+                $recipe->setImagePath($fileName);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($recipe);
+            $em->flush();
+        }
+
+        if($form2->isSubmitted() && $form2->isValid()) {
+
+            // $file stores the uploaded PDF file
+            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+            $file = $product->getBrochure();
+
+            // Generate a unique name for the file before saving it
+            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+
+            $brochuresDir = $this->container->getParameter('kernel.root_dir') . '/../web/images';
+            $file->move($brochuresDir, $fileName);
+
+            // Update the 'brochure' property to store the PDF file name
+            // instead of its contents
+            $product->setBrochure($fileName);
+
+            $array = $recipe->getImagePreparationPath();
+            if($array == null)
+                $array = array();
+
+            array_push($array ,$fileName);
+            $recipe->setImagePreparationPath($array);
+             //   array_push($recipe->imagePreparationPath() ,$fileName);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($recipe);
             $em->flush();
 
-
         }
-
 
         return $this->render('recipe_list/recipes.html.twig', [
             'flag' => $flag,
@@ -100,6 +132,7 @@ class RecipeController extends Controller
             'recipe' => $recipe,
             'username' => $username,
             'form' => $form->createView(),
+            'form2' => $form2->createView(),
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
         ]);
     }

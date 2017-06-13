@@ -16,6 +16,7 @@
 			<link rel="stylesheet" href="{{ asset('css/navbar.css') }}"></link>
 			<link rel="stylesheet" href="{{ asset('css/review.css') }}"></link>
 			<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" >
+           <link rel="stylesheet" href="{{ asset('css/tumb.css') }}"></link>
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
@@ -23,6 +24,7 @@
         {% block header %}{% endblock %}
         {% block body %}{% endblock %}
         {% block javascripts %}
+
             <script src="{{ asset('js/jquery-2.2.4.min.js') }}"></script>
             <script src="{{ asset('js/moment.min.js') }}"></script>
             <script src="{{ asset('js/bootstrap-3.3.7.min.js') }}"></script>
@@ -33,6 +35,7 @@
 			<script src="{{ asset('js/new_recipe.js') }}"></script>
 			<script src="{{ asset('js/review.js') }}"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Flip/1.0.18/jquery.flip.js"></script>
+            <script src="{{ asset('js/recipe.js') }}"></script>
         {% endblock %}
     </body>
 </html>
