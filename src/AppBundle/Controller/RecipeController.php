@@ -167,7 +167,6 @@ class RecipeController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->remove($review);
         $em->flush();
-
         return $this->redirectToRoute('rec', array('title' => $title));
     }
 

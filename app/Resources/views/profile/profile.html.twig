@@ -1,0 +1,75 @@
+{% extends 'navbar/user_navbar.html.twig' %}
+
+
+
+{% block body %}
+
+    <div id="sidebar" class="col-sm-9">
+
+
+        {% for user in users  %}
+        <div id='content' class='row-fluid well'>
+
+            <div class='span8 main'>
+
+
+                <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"/>
+
+
+
+                <div class="container">
+
+
+
+                        <div class="media">
+                            <a class="pull-left" href="#">
+                                <img class="media-object" src="http://www.thefmleague.com/wp-content/uploads/2016/02/1139-128x128.png">
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading">Username: {{ user.username}}</h4>
+                                <br>
+                                <h4 class="media-heading">Mail    : {{ user.email}}</h4>
+                                <br>
+                                <h4 class="media-heading">Total Recipes : {{ user.count}}</h4>
+                                <br>
+                                <h4 class="media-heading">Recipes : </h4>
+                                {% for recipe in recipes  %}
+                                <h4  class="media-heading"><a class="link-recipe" href="{{ path('rec',{title : recipe.title})}}">{{ recipe.title }}</a></h4>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+
+                </div>
+             </div>
+           </div>
+        {% endfor %}
+    </div>
+
+
+
+    <div id="sidebar" class="col-sm-3">
+        <head>
+
+        </head>
+        <body>
+
+
+
+        <div id='content' class='row-fluid well' >
+
+            <div class='span8 main'>
+
+                <h3>Profile</h3>
+                <h4>La Pagina di profilo che contiene tutte le informazioni sul tuo account.</h4>
+
+            </div>
+        </div>
+
+
+
+
+
+    </body>
+
+{% endblock %}

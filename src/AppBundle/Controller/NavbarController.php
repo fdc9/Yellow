@@ -10,6 +10,7 @@ use AppBundle\Entity\User;
 use AppBundle\Entity\Ingredient;
 use AppBundle\Entity\IngredientRecipe;
 
+
 class NavbarController extends Controller
 {
     /**
@@ -24,6 +25,44 @@ class NavbarController extends Controller
 			'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
 		]);
     }
+
+    /**
+     * @Route("/user/profile", name="profile")
+     *
+     */
+    public function profileAction()
+    {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $users = $this->getDoctrine()->getRepository(User::class)->findByUsername($user->getUsername());
+        $recipes = $this->getDoctrine()->getRepository(Recipe::class)->findByUser($user);
+
+        foreach ($users as $usr) {
+
+            $this->updateAvg('All');
+
+            $em = $this->getDoctrine()->getManager();
+
+            $query = $em->createQuery("
+              SELECT '*'
+              FROM AppBundle:Recipe rec
+              WHERE rec.user = :index"
+            )->setParameter('index', $usr->getId());
+
+            $c = $query->getResult();
+            $usr->setCount(count($c));
+        }
+
+        return $this->render('profile/profile.html.twig', [
+            'username' => $user->getUsername(),
+            'users' => $users,
+             'recipes' => $recipes,
+            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
+        ]);
+    }
+
+
+
+
 
     /**
      * @Route("/statistics", name="statistics")
