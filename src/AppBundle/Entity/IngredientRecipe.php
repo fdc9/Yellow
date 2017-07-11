@@ -12,7 +12,7 @@ use AppBundle\Entity\Ingredient;
  * @ORM\Entity
  * @ORM\Table(name="IngredientRecipe")
  */
-class Ingredient_recipe
+class IngredientRecipe
 {
     /**
      * @var int

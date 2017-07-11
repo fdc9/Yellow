@@ -22,7 +22,7 @@
     left: 0;
 }
 .section-content{
-  text-align: center; 
+  text-align: center;
 }
 .contact-section .col-md-6{
   width: 50%;
@@ -123,3 +123,4 @@ textarea.form-control {
     -webkit-transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
     transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
 }
+

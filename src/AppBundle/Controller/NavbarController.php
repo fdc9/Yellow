@@ -1,27 +1,24 @@
 <?php
 namespace AppBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
+
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Recipe;
 use AppBundle\Entity\User;
-use AppBundle\Entity\Review;
 use AppBundle\Entity\Ingredient;
 use AppBundle\Entity\IngredientRecipe;
+
 class NavbarController extends Controller
 {
     /**
      * @Route("/user/new_recipe", name="new_recipe")
 	 *
      */
-     public function newRecipeAction(Request $request)
+     public function newRecipeAction()
     {
     	$user = $this->get('security.token_storage')->getToken()->getUser();
 		return $this->render('navbar/new_recipe.html.twig', [
@@ -34,7 +31,7 @@ class NavbarController extends Controller
      * @Route("/statistics", name="statistics")
      *
      */
-    public function statisticsAction(Request $request)
+    public function statisticsAction()
     {
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $users = $this->getDoctrine()->getRepository(User::class)->findAll();
@@ -83,7 +80,7 @@ class NavbarController extends Controller
      * @Route("/recipes/{category}/{order_by}/{order_type}", defaults={"category": "All", "order_by": "title", "order_type": "ASC"}, name="recipes")
 	 * @Method("GET")
      */
-     public function listRecipesAction(Request $request, $category, $order_by, $order_type)
+     public function listRecipesAction($category, $order_by, $order_type)
     {
 		$user = $this->get('security.token_storage')->getToken()->getUser();
 
@@ -138,6 +135,8 @@ class NavbarController extends Controller
 
                 $recp->setAverage($query/count($c));
             }
+            else
+                $recp->setAverage(-1);
 
             $em->flush();
         }

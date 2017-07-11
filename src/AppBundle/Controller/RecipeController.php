@@ -1,23 +1,17 @@
 <?php
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\IngredientRecipe;
+
 use AppBundle\Form\ImagePreparationType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Recipe;
 use AppBundle\Entity\Review;
 use AppBundle\Entity\User;
 use AppBundle\Entity\Ingredient;
-use AppBundle\Entity\Ingredient_recipe;
-
+use AppBundle\Entity\IngredientRecipe;
 use AppBundle\Entity\Product;
 use AppBundle\Form\ProductType;
 
@@ -56,7 +50,7 @@ class RecipeController extends Controller
         }
 
 
-        $repository2 = $this->getDoctrine()->getRepository('AppBundle:Ingredient_recipe');
+        $repository2 = $this->getDoctrine()->getRepository('AppBundle:IngredientRecipe');
         $ingrendients_array = $repository2->findByRecipe($recipe);
 
 
@@ -73,8 +67,7 @@ class RecipeController extends Controller
         $form2->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
-            // $file stores the uploaded PDF file
-            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+
             $file = $product->getBrochure();
 
             // Generate a unique name for the file before saving it
@@ -82,6 +75,9 @@ class RecipeController extends Controller
 
             $brochuresDir = $this->container->getParameter('kernel.root_dir') . '/../web/images';
             $file->move($brochuresDir, $fileName);
+
+            if($recipe->getImagePath() != null)
+                @unlink($brochuresDir .'/'. $recipe->getImagePath());
 
             // Update the 'brochure' property to store the PDF file name
             // instead of its contents
@@ -96,8 +92,7 @@ class RecipeController extends Controller
 
         if($form2->isSubmitted() && $form2->isValid()) {
 
-            // $file stores the uploaded PDF file
-            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+
             $file = $product->getBrochure();
 
             // Generate a unique name for the file before saving it
@@ -144,7 +139,7 @@ class RecipeController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $ingrec = $this->getDoctrine()->getRepository(Ingredient_recipe::class)->findBy(array('recipe' => $id));
+        $ingrec = $this->getDoctrine()->getRepository(IngredientRecipe::class)->findBy(array('recipe' => $id));
 
         foreach ($ingrec as $ir){
             $em->remove($ir);
@@ -247,7 +242,7 @@ class RecipeController extends Controller
   		        $ingredient = $ing;
             }
 
-            $ingredient_recipe = new Ingredient_recipe();
+            $ingredient_recipe = new IngredientRecipe();
             $ingredient_recipe->setIngredient($ingredient);
             $ingredient_recipe->setRecipe($recipe);
             $ingredient_recipe->setQuantity($request->get('quantity'.$i));
