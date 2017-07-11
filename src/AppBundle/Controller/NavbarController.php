@@ -9,6 +9,8 @@ use AppBundle\Entity\Recipe;
 use AppBundle\Entity\User;
 use AppBundle\Entity\Ingredient;
 use AppBundle\Entity\IngredientRecipe;
+use AppBundle\Entity\Product;
+use AppBundle\Form\ProductType;
 
 
 class NavbarController extends Controller
@@ -30,7 +32,7 @@ class NavbarController extends Controller
      * @Route("/user/profile", name="profile")
      *
      */
-    public function profileAction()
+    public function profileAction(Request $request)
     {
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $users = $this->getDoctrine()->getRepository(User::class)->findByUsername($user->getUsername());
@@ -52,10 +54,40 @@ class NavbarController extends Controller
             $usr->setCount(count($c));
         }
 
+        $product = new Product();
+        $form = $this->createForm(ProductType::class, $product);
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() && $form->isValid()){
+
+            $file = $product->getBrochure();
+
+            // Generate a unique name for the file before saving it
+            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+
+            $brochuresDir = $this->container->getParameter('kernel.root_dir') . '/../web/images';
+            $file->move($brochuresDir, $fileName);
+
+            if($user->getImagePath() != null)
+                @unlink($brochuresDir .'/'. $user->getImagePath());
+
+            // Update the 'brochure' property to store the PDF file name
+            // instead of its contents
+            $product->setBrochure($fileName);
+
+            $user->setImagePath($fileName);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+        }
+
         return $this->render('profile/profile.html.twig', [
             'username' => $user->getUsername(),
             'users' => $users,
              'recipes' => $recipes,
+            'form'=> $form->createView(),
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
         ]);
     }

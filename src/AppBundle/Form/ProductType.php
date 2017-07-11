@@ -22,18 +22,6 @@ class ProductType extends AbstractType
         ;
     }
 
-//    public function buildForm2(FormBuilderInterface $builder, array $options)
-//    {
-//        $builder
-//            // ...
-//
-//            ->add('brochurePreparation', FileType::class, array('label' => 'Insert preparation image'))
-//            ->add('savePrepation', SubmitType::class, array('label' => 'save','attr'=>array('class'=> 'btn btn-success')))
-//            // ...
-//        ;
-//    }
-
-
 
     public function configureOptions(OptionsResolver $resolver)
     {

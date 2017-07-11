@@ -79,6 +79,11 @@ class User implements UserInterface
     private $password;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $imagePath;
+
+    /**
      * @var array
      *
      * @ORM\Column(type="json_array")
@@ -170,6 +175,30 @@ class User implements UserInterface
 
     public function setCount($count){
         $this->count = $count;
+    }
+
+    /**
+     * Set imagePath
+     *
+     * @param string $title
+     *
+     * @return ImagePath
+     */
+    public function setImagePath($path)
+    {
+        $this->imagePath = $path;
+
+        return $this;
+    }
+
+    /**
+     * Get imagePath
+     *
+     * @return string
+     */
+    public function getImagePath()
+    {
+        return $this->imagePath;
     }
 
 
