@@ -78,4 +78,6 @@ interface ObjectRepository
      * @return string
      */
     public function getClassName();
+
+    public function findOneByName($get);
 }
